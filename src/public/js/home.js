@@ -65,7 +65,7 @@ async function MapDataFetch() {
                 icon: treeIcon
             }).addTo(map)
         } else if (status === "Moderate") {
-            status = "Có nguy cơ"
+            status = "Trung bình"
             marker = L.marker([lat, lon], {
                 icon: warningTree
             }).addTo(map)
