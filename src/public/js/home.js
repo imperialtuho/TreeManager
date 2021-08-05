@@ -116,7 +116,7 @@ async function SearchDataFetch() {
 
     console.log(Data_type);
 
-    if (data_length.includes(Data_type)) {
+    if (data_length.includes(Data_type) || Data_type == null) {
         pos = Data_type
         console.log('executed')
     } else {
@@ -133,7 +133,7 @@ async function SearchDataFetch() {
 
     node_data = data[number]
     console.log(node_data)
-    map.setView([node_data.Coordinate.Latitude, node_data.Coordinate.Longitude], 8)
+    map.setView([node_data.Coordinate.Latitude, node_data.Coordinate.Longitude], 10)
 }
 SearchDataFetch()
 
