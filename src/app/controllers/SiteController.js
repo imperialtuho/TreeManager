@@ -15,20 +15,12 @@ class SiteController {
 
     //[GET] Home
     index(req, res, next) {
-
-        Node.find({})
-            .then(nodes => {
-                res.render('home', {
-                    nodes: MultipleMongooseToObject(nodes)
-                })
-            })
-            .catch(next)
-
+        res.render('home')
     }
     //[GET] API DATA SERVER TO CLIENT SIDE MAPPING
-    api(req, res, next) {
+    async api(req, res, next) {
 
-        Node.find({})
+        await Node.find({})
             .then(nodes => {
                 var Data = MultipleMongooseToObject(nodes)
                 res.json(Data)
@@ -37,5 +29,22 @@ class SiteController {
             .catch(next)
 
     }
+    //[GET]Search
+    async search(req, res, next) {
+
+        Node.findOne({
+                Name: req.query.q
+            })
+            .then(node => {
+                res.json(node)
+                // console.log(node)
+                return
+            })
+            .catch(next)
+    }
 }
+
+
+
+
 module.exports = new SiteController

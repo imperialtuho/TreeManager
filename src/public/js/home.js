@@ -16,20 +16,25 @@ var endangeredTree = L.icon({
     iconSize: [30, 30]
 })
 
-// Create map
-const map = L.map('map').setView([10.031517, 105.767851], 7) // Default Coordiante, B1 CTU CAN THO [10.031517, 105.767851] [Lat, Long]
+var data = [{
+    "loc": [41.575330, 13.102411],
+    "title": "aquamarine"
+}]
+/* Create map view */
+var map = L.map('map', {}).setView([10.031517, 105.767851], 7) // Default Coordiante, B1 CTU CAN THO [10.031517, 105.767851] [Lat, Long]
 var marker = L.marker([10.031517, 105.767851], {}).addTo(map)
+
 marker.bindPopup('Vị trí mặt định tại B1 CTU')
 marker.openPopup()
 
 var popup = L.popup();
-
 
 //layer tile set
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 20, // Max Zoom
 }).addTo(map);
+
 
 //[GET] data from api
 MapDataFetch()
@@ -85,8 +90,51 @@ async function MapDataFetch() {
             ADXL345: &nbsp; X: ${x} &nbsp; Y: ${y} &nbsp; Z: ${z}<br>
             Trạng thái: ${status}
 
-            `);
-        //  marker.openPopup()
+            `).addTo(map);
     }
 
 }
+
+
+async function SearchDataFetch() {
+
+    const response = await fetch("/api")
+    const data = await response.json()
+
+    var data_length = []
+    var pos, node_data, number
+
+    for (i = 0; i < Object.keys(data).length; i++) {
+        data_length.push(`${i+1}`)
+    }
+    console.log(data_length)
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const Data_type = urlParams.get('q')
+    // number = parseInt(Data_type)
+
+    console.log(Data_type);
+
+    if (data_length.includes(Data_type)) {
+        pos = Data_type
+        console.log('executed')
+    } else {
+        alert("Not found")
+        pos = '-1'
+    }
+
+    parseInt(pos)
+    console.log(pos)
+    number = pos
+    number--
+    console.log(number)
+
+
+    node_data = data[number]
+    console.log(node_data)
+    map.setView([node_data.Coordinate.Latitude, node_data.Coordinate.Longitude], 8)
+}
+SearchDataFetch()
+
+/* TEST ENV*/
