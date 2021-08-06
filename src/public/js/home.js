@@ -112,8 +112,6 @@ async function SearchDataFetch() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const Data_type = urlParams.get('q')
-    // number = parseInt(Data_type)
-
     console.log(Data_type);
 
     if (data_length.includes(Data_type) || Data_type == null) {
@@ -129,8 +127,6 @@ async function SearchDataFetch() {
     number = pos
     number--
     console.log(number)
-
-
     node_data = data[number]
     console.log(node_data)
     map.setView([node_data.Coordinate.Latitude, node_data.Coordinate.Longitude], 10)

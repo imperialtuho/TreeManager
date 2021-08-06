@@ -1,165 +1,189 @@
-<nav class="navbar navbar-expand-lg navbar-light navbar-custom sticky-top" style="z-index: 999;">
+<nav class="navbar navbar-expand-sm navbar-light navbar-custom position-absolute" style="z-index: 999;">
 
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/"><img src="/images/tree.png" alt="Icon" width="50px" , height="50px"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div class="container-fluid container-fluid-custom d-flex">
+        <div class="container-fluid d-flex align-items-start">
+            <a class="navbar-brand" href="/"><img src="/images/tree.png" alt="Icon" width="50px" , height="50px"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/"><button class="btn" type="button">Trang
-                            chủ</button></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"><button class="btn" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Thống kế & Báo
-                            cáo</button> </a>
-                    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom"
-                        aria-labelledby="offcanvasBottomLabel">
-                        <div class="offcanvas-header">
-                            <h3 class="offcanvas-title" id="offcanvasBottomLabel">Số liệu cây xanh</h3>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body small">
-
-                            <div class="row">
-                                <div class="col-xl-6">
-                                    <div class="card mb-4">
-                                        <div class="card-header">
-                                            <i class="fas fa-chart-area mr-1"></i>
-                                            Tốc độ gió
-                                        </div>
-                                        <div class="card-body"><canvas id="myAreaChart1" width="100%"
-                                                height="40"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="card mb-4">
-                                        <div class="card-header">
-                                            <i class="fas fa-chart-bar mr-1"></i>
-                                            Độ ẩm đất
-                                        </div>
-                                        <div class="card-body"><canvas id="myBarChart1" width="100%"
-                                                height="40"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xl-6">
-                                    <div class="card mb-4">
-                                        <div class="card-header">
-                                            <i class="fas fa-chart-area mr-1"></i>
-                                            Năng lượng pin
-                                        </div>
-                                        <div class="card-body"><canvas id="myAreaChart2" width="100%"
-                                                height="40"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="card mb-4">
-                                        <div class="card-header">
-                                            <i class="fas fa-chart-bar mr-1"></i>
-                                            Cảm biến nghiêng ADXL345
-                                        </div>
-                                        <div class="card-body"><canvas id="myBarChart2" width="100%"
-                                                height="40"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    </a>
-                </li>
-            </ul>
-
-            <form class="d-flex" action="/" method="GET">
-                <input class="form-control me-2" type="search" placeholder="Tìm kiếm" name="q" aria-label="Search">
-                <button class="btn btn-outline-success search-btn" type="submit" style="width: 150px;">Tìm kiếm</button>
-            </form>
-
-        </div>
-    </div>
-
-    <button class="btn ms-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-        aria-controls="offcanvasRight"> <i class="fas fa-info-circle"></i>
-    </button>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel"> </h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="offcanvas-body-container">
-
-                <h1>Bản đồ hỗ trợ quản lý cây xanh tại khu 2 trường Đại học Cần Thơ.</h1>
-                <p> Bản đồ giúp người quản lý có thể tìm kiếm, phát hiện các vấn đề liên quan đến hiện trạng của cây
-                    xanh
-                    được lắp đặt
-                    cảm biến tại một vị trí bất kỳ trên địa bàn thành phố. Đồng thời, người quản lý cũng có thể tra cứu
-                    các
-                    thông
-                    tin địa điểm cảm biến được lắp đặt,… để đáp ứng nhu cầu quản lý cây xanh hàng ngày.
-                    Hệ thống cũng cung cấp các công cụ bản đồ phân tích mật độ, thống kê phục vụ công tác lãnh đạo, quản
-                    lý,
-                    giám sát, phòng chống cây xanh ngã đỗ. </br></br>
-
-                    Dữ liệu chuyên môn về phòng chống cây xanh ngã đỗ được cung cấp bởi nhóm thực hiện đề tài luận văn
-                    tốt
-                    nghiệp năm 2020-2021 và được cập nhật ngay sau khi có dữ liệu được cập nhật trên database.
-                    </br></br>
-
-                    Nhóm thực hiện đề tài hy vọng bản đồ quản lý này là công cụ hỗ trợ phòng chống nguy cơ cây xanh ngã
-                    đỗ
-                    hiệu quả cho người
-                    dân và các nhà quản lý cùng chung tay thành phố phòng chống việc cây xanh ngã đỗ gây thiệt hại tài
-                    sản
-                    và tính mạng.</p>
-                <h2>Một số thông tin cần lưu ý</h2>
-                <ul class="list-config">
-                    <li>
-                        <p><img src="/images/tree.png" alt="tree" width="28px" height="28px"> <span> <b>An toàn:</b>
-                                Đây là những vị trí của cây có trạng thái an toàn, không có nguy cơ ngã đỗ.
-                            </span>
-                        </p>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/"><button class="btn" type="button">Trang
+                                chủ</button></a>
                     </li>
-                    <li>
-                        <p><img src="/images/alert.png" alt="alarm" width="28px" height="28px"> <span><b>Trung bình:</b>
-                                Đây là những vị trí của cây có trạng thái có nguy cơ ngã đổ, cần được kiểm tra.</span>
-                        </p>
-                    </li>
-                    <li>
-                        <p> <img src="/images/alarm.png" alt="alert" width="28px" height="28px"> <span><b>Nguy hiểm:</b>
-                                Đây là những vị trí của cây có trạng thái nguy hiểm có nguy cơ ngã đỗ rất cao cần được
-                                kiểm soát kịp thời.</span>
-                        </p>
+                    <li class="nav-item">
+                        <a class="nav-link"><button class="btn" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Thống kế & Báo
+                                cáo</button> </a>
+                        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom"
+                            aria-labelledby="offcanvasBottomLabel">
+                            <div class="offcanvas-header">
+                                <h3 class="offcanvas-title" id="offcanvasBottomLabel">Thông tin thống kê tại các cây
+                                    được quản lý</h3>
+                                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body small">
+
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="card mb-4">
+                                            <div class="card-header">
+                                                <i class="fas fa-chart-area mr-1"></i>
+                                                Tốc độ gió
+                                            </div>
+                                            <div class="card-body"><canvas id="myAreaChart1" width="100%"
+                                                    height="40"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="card mb-4">
+                                            <div class="card-header">
+                                                <i class="fas fa-chart-bar mr-1"></i>
+                                                Độ ẩm đất
+                                            </div>
+                                            <div class="card-body"><canvas id="myBarChart1" width="100%"
+                                                    height="40"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="card mb-4">
+                                            <div class="card-header">
+                                                <i class="fas fa-chart-area mr-1"></i>
+                                                Năng lượng pin
+                                            </div>
+                                            <div class="card-body"><canvas id="myAreaChart2" width="100%"
+                                                    height="40"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="card mb-4">
+                                            <div class="card-header">
+                                                <i class="fas fa-chart-bar mr-1"></i>
+                                                Cảm biến nghiêng ADXL345
+                                            </div>
+                                            <div class="card-body"><canvas id="myBarChart2" width="100%"
+                                                    height="40"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        </a>
                     </li>
                 </ul>
 
-                <footer class="py-4 mt-5">
-                    <div class="container-fluid">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Imperial Tu Ho 2020-2021</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+                <form class="d-flex" action="/" method="GET">
+                    <input class="form-control me-2" type="text" autocomplete="" placeholder="&#128269; Tìm kiếm"
+                        name="q" aria-label="Search">
+                    <button class="btn btn-outline-success search-btn" type="submit" style="width: 150px;">Tìm
+                        kiếm</button>
+                </form>
 
             </div>
         </div>
+
+        <button class="btn ms-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight"> <i class="fas fa-info-circle" style="height: 20px; width:20px;"></i>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 id="offcanvasRightLabel"> </h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="offcanvas-body-container">
+
+                    <h1>Bản đồ hỗ trợ quản lý cây xanh tại khu 2 trường Đại học Cần Thơ.</h1>
+                    <p> Bản đồ giúp người quản lý có thể tìm kiếm, phát hiện các vấn đề liên quan đến hiện trạng của cây
+                        xanh
+                        được lắp đặt
+                        cảm biến tại một vị trí bất kỳ trên địa bàn thành phố. Đồng thời, người quản lý cũng có thể tra
+                        cứu
+                        các
+                        thông
+                        tin địa điểm cảm biến được lắp đặt,… để đáp ứng nhu cầu quản lý cây xanh hàng ngày.
+                        Hệ thống cũng cung cấp các công cụ bản đồ phân tích mật độ, thống kê phục vụ công tác lãnh đạo,
+                        quản
+                        lý,
+                        giám sát, phòng chống cây xanh ngã đỗ. </br></br>
+
+                        Dữ liệu chuyên môn về phòng chống cây xanh ngã đỗ được cung cấp bởi nhóm thực hiện đề tài luận
+                        văn
+                        tốt
+                        nghiệp năm 2020-2021 và được cập nhật ngay sau khi có dữ liệu được cập nhật trên database.
+                        </br></br>
+
+                        Nhóm thực hiện đề tài hy vọng bản đồ quản lý này là công cụ hỗ trợ phòng chống nguy cơ cây xanh
+                        ngã
+                        đỗ
+                        hiệu quả cho người
+                        dân và các nhà quản lý cùng chung tay thành phố phòng chống việc cây xanh ngã đỗ gây thiệt hại
+                        tài
+                        sản
+                        và tính mạng.</p>
+                    <h2>Một số thông tin cần lưu ý</h2>
+                    <ul class="list-config">
+                        <li>
+                            <p><img src="/images/tree.png" alt="tree" width="28px" height="28px"> <span> <b>An toàn:</b>
+                                    Đây là những vị trí của cây có trạng thái an toàn, không có nguy cơ ngã đỗ.
+                                </span>
+                            </p>
+                        </li>
+                        <li>
+                            <p><img src="/images/alert.png" alt="alarm" width="28px" height="28px"> <span><b>Trung
+                                        bình:</b>
+                                    Đây là những vị trí của cây có trạng thái có nguy cơ ngã đổ, cần được kiểm
+                                    tra.</span>
+                            </p>
+                        </li>
+                        <li>
+                            <p> <img src="/images/alarm.png" alt="alert" width="28px" height="28px"> <span><b>Nguy
+                                        hiểm:</b>
+                                    Đây là những vị trí của cây có trạng thái nguy hiểm có nguy cơ ngã đỗ rất cao cần
+                                    được
+                                    kiểm soát kịp thời.</span>
+                            </p>
+                        </li>
+                        <li>
+                            <p><span> <b> Ô tìm kiếm: </b></span> Chỉ sử dụng từ khóa là ID để tìm kiếm vị trí cây trên
+                                bản
+                                đồ và ID bắt đầu từ 1, 2, 3, ... tương ứng với vị trị cây số 1, 2, 3, ...</p>
+                        </li>
+                    </ul>
+
+                    <div class="py-4 mt-5">
+                        <div class="container-fluid">
+                            <div class="d-flex align-items-center justify-content-between small">
+                                <div class="text-muted">Copyright &copy; Imperial Tu Ho 2020-2021 &#128541; &#128541;
+                                    &#128541;
+                                </div>
+                                <div>
+                                    <a href="#">Privacy Policy</a>
+                                    &middot;
+                                    <a href="#">Terms &amp; Conditions</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </nav>

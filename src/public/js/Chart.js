@@ -1,11 +1,65 @@
-// // Set new default font family and font color to mimic Bootstrap's default styling
-// Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-// Chart.defaults.global.defaultFontColor = '#292b2c';
+/* Data variable */
+var x, y, z, hud, temp, wind
+var windData = [],
+    batteryData = [],
+    hudmidityData = [],
+    adxl345Data = [],
+    tempData = []
+
+async function MapDataPushFetch() {
+    const response = await fetch("/api")
+    const data = await response.json()
+
+    console.log(data)
+    // const queryString = window.location.search;
+    // const urlParams = new URLSearchParams(queryString);
+    // var Data_type = urlParams.get('q')
+    // Data_type--
+    // nodeData = data[Data_type]
+    // console.log(nodeData);
+    // for (item of data) {
+
+    //     x = item.ADXL345.X
+    //     y = item.ADXL345.Y
+    //     z = item.ADXL345.Z
+    //     hud = item.Hud
+    //     temp = item.Temp
+    //     wind = item.Wind
+
+    //     /* Push data to array */
+    //     // hudmidityData.push(hud)
+    //     // tempData.push(temp)
+    //     // windData.push(wind)
+    //     hudmidityData.push(parseInt(hud))
+    //     tempData.push(parseInt(temp))
+    //     windData.push(parseInt(wind))
+    // }
+    hudmidityData.push(data[0].Hud)
+
+    console.log(hudmidityData)
+    console.log(tempData)
+    console.log(windData)
+}
+
+MapDataPushFetch()
+
+/* Update Chart Data */
+async function drawChart() {
+    await MapDataPushFetch()
+    myLineChart1.data.datasets[0].data = windData
+    myLineChart1.data.datasets[1].data = windData
+    myLineChart1.update()
+    console.log('Updated')
+}
+
+// setInterval(() => {
+//     drawChart()
+// }, 1000)
+
 
 
 var ctx1 = document.getElementById("myAreaChart1");
 var ctx2 = document.getElementById("myBarChart1");
-
 var ctx3 = document.getElementById("myAreaChart2");
 var ctx4 = document.getElementById("myBarChart2");
 
@@ -16,7 +70,7 @@ var myLineChart1 = new Chart(ctx1, {
     data: {
         labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
         datasets: [{
-            label: "Wind km/h",
+            label: "Vị trí cây 1",
             lineTension: 0.3,
             backgroundColor: "rgba(2,117,216,0.2)",
             borderColor: "rgba(2,117,216,1)",
@@ -27,7 +81,20 @@ var myLineChart1 = new Chart(ctx1, {
             pointHoverBackgroundColor: "rgba(2,117,216,1)",
             pointHitRadius: 50,
             pointBorderWidth: 2,
-            data: [18.287, 28.682, 31.274, 33.259, 25.849, 24.159, 32.651],
+            data: windData[0],
+        }, {
+            label: "Vị trí cây 2",
+            lineTension: 0.3,
+            backgroundColor: "rgba(2,117,216,0.2)",
+            borderColor: "rgba(255,50,10,1)",
+            pointRadius: 5,
+            pointBackgroundColor: "rgba(255,50,10,1)",
+            pointBorderColor: "rgba(255,255,255,0.8)",
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(255,50,10,1)",
+            pointHitRadius: 50,
+            pointBorderWidth: 2,
+            data: windData[1],
         }],
     },
     options: {
@@ -46,7 +113,7 @@ var myLineChart1 = new Chart(ctx1, {
             yAxes: [{
                 ticks: {
                     min: 0,
-                    max: 40000,
+                    max: 1000,
                     maxTicksLimit: 5
                 },
                 gridLines: {
@@ -59,6 +126,7 @@ var myLineChart1 = new Chart(ctx1, {
         }
     }
 });
+
 
 var myLineChart2 = new Chart(ctx3, {
     type: 'line',
@@ -111,7 +179,7 @@ var myLineChart2 = new Chart(ctx3, {
 
 
 // Bar Chart Example
-var myLineChart1 = new Chart(ctx2, {
+var myBarChart1 = new Chart(ctx2, {
     type: 'bar',
     data: {
         labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
@@ -152,7 +220,7 @@ var myLineChart1 = new Chart(ctx2, {
     }
 });
 
-var myLineChart2 = new Chart(ctx4, {
+var myBarChart2 = new Chart(ctx4, {
     type: 'bar',
     data: {
         labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
@@ -192,8 +260,6 @@ var myLineChart2 = new Chart(ctx4, {
         }
     }
 });
-
-
 
 
 window.onload = function () {}

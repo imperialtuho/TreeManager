@@ -38,6 +38,7 @@ a {
 .navbar-custom {
     padding: 1rem;
     width: 100%;
+    margin: 0;
 }
 
 .search-bar {
@@ -54,9 +55,19 @@ input::placeholder {
     color: rgb(180, 180, 180) !important;
 }
 
+
+
 /* Button */
 
 .btn {
+    color: white;
+}
+
+.btn:hover {
+    color: tomato;
+}
+
+.search-btn:hover {
     color: white;
 }
 
@@ -64,7 +75,7 @@ input::placeholder {
 /* CSS header HOME */
 .navbar {
     /* background-color: #16181f !important; */
-    background-color: rgba(22, 24, 31, 0.8) !important;
+    background-color: rgba(22, 24, 31, 1) !important;
 }
 
 
@@ -82,13 +93,12 @@ input::placeholder {
 .offcanvas-title {
     margin-bottom: 0;
     line-height: 1.5;
-    margin-left: 40%;
-    margin-right: 40%;
+    margin: auto;
 }
 
 
 #offcanvasRight {
-    width: 50vw;
+    width: 63vw;
 }
 
 #offcanvasRight h1 {
@@ -131,4 +141,49 @@ input::placeholder {
 
 
 
-/* HOME PAGE responsive mobile */
+
+/*  */
+/*               HOME PAGE Responsive Configuration            */
+/*  */
+
+/* For less than 576px // Smart phone // Mobile screen */
+@media (max-width: 575.8px) {
+
+    /* Container // flexible */
+    .container-fluid-custom {
+        flex-wrap: unset !important;
+        justify-content: space-around;
+    }
+
+    .d-flex {
+        display: unset !important;
+    }
+
+    /* button */
+    .search-btn {
+        margin-top: 4% !important;
+    }
+
+}
+
+/* For less than 768px // Tablet //Small Desktop */
+@media (max-width: 767.8px) {
+
+    /* Canvas */
+    .offcanvas-bottom {
+        height: 100vh;
+    }
+
+    #offcanvasRight {
+        width: 100vw;
+    }
+
+    .offcanvas-bottom {
+        height: 100vh;
+    }
+
+    .offcanvas-title {
+        margin: auto;
+        line-height: 1.5;
+    }
+}

@@ -14,8 +14,15 @@ const path = require('path');
 class SiteController {
 
     //[GET] Home
-    index(req, res, next) {
-        res.render('home')
+    async index(req, res, next) {
+        await Node.find({})
+            .then(nodes => {
+                res.render('home', {
+                    nodes: MultipleMongooseToObject(nodes)
+                })
+            })
+            .catch(next)
+
     }
     //[GET] API DATA SERVER TO CLIENT SIDE MAPPING
     async api(req, res, next) {
