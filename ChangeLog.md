@@ -1,8 +1,8 @@
-    V1.0.2 Aug 8th 2021
+    Small patch update Aug 8th 2021
 New feature:
- -
+ - The Wind Volecity Chart is now continuously updated
 Bug fixes:
- -
+ - Improve website stability
 Known bugs:
  -
 
