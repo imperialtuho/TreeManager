@@ -3,6 +3,7 @@ New feature:
  - The Wind Volecity Chart is now continuously updated
 Bug fixes:
  - Improve website stability
+ 
 Known bugs:
  -
 
