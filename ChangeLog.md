@@ -1,11 +1,14 @@
     Small patch update Aug 8th 2021
 New feature:
  - The Wind Volecity Chart is now continuously updated
+ - The Hudmidity Chart updated.
+ - Battery Chart updated.
+ - ADXL345 rendered.
 Bug fixes:
  - Improve website stability
  
 Known bugs:
- -
+ - ADXL345 still not real-time updating.
 
 
 <!--  -->

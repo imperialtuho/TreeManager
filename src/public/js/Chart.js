@@ -94,14 +94,16 @@ async function MapDataPushFetch() {
 
 }
 
-MapDataPushFetch()
-
 /* Update Chart Data */
 async function drawChart() {
     await MapDataPushFetch()
     await setLabels()
     myLineChart1.update()
+    myLineChart2.update()
+    myBarChart1.update()
+    myBarChart2.update()
     console.log('Updated')
+    console.log(batteryData1)
 }
 
 /* Set Hour labels */
@@ -113,9 +115,18 @@ var hours = ["00:00 AM", "01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 
 async function setLabels() {
     var nextMonthIndex = hours.indexOf(myLineChart1.data.labels[myLineChart1.data.labels.length - 1]) + 1;
     var nextMonthName = hours[nextMonthIndex] != undefined ? hours[nextMonthIndex] : "00:00 AM";
+
     myLineChart1.data.labels.push(nextMonthName)
     myLineChart1.data.labels.shift()
+
+    myLineChart2.data.labels.push(nextMonthName)
+    myLineChart2.data.labels.shift()
+
+    myBarChart1.data.labels.push(nextMonthName)
+    myBarChart1.data.labels.shift()
 }
+
+
 /* Continously update the chart */
 
 setInterval(() => {
@@ -224,20 +235,59 @@ var myLineChart1 = new Chart(ctx1, {
 var myLineChart2 = new Chart(ctx3, {
     type: 'line',
     data: {
-        labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        labels: ["00:00 AM", "01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 AM", "06:00 AM"],
         datasets: [{
-            label: "Battery %",
+            label: "Vị trí cây 1",
             lineTension: 0.3,
-            backgroundColor: "rgba(2,117,216,0.2)",
-            borderColor: "rgba(2,117,216,1)",
+            backgroundColor: "white",
+            borderColor: "blue",
             pointRadius: 5,
-            pointBackgroundColor: "rgba(2,117,216,1)",
+            pointBackgroundColor: "blue",
             pointBorderColor: "rgba(255,255,255,0.8)",
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(2,117,216,1)",
+            pointHoverBackgroundColor: "rgba(2,117,216,0.8)",
             pointHitRadius: 50,
             pointBorderWidth: 2,
-            data: [100, 80, 90, 85, 70, 88, 90, 75, 87, 66, 77, 88, 90],
+            data: batteryData1,
+        }, {
+            label: "Vị trí cây 2",
+            lineTension: 0.3,
+            backgroundColor: "white",
+            borderColor: "red",
+            pointRadius: 5,
+            pointBackgroundColor: "red",
+            pointBorderColor: "rgba(255,255,255,0.8)",
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(255,50,10,0.8)",
+            pointHitRadius: 50,
+            pointBorderWidth: 2,
+            data: batteryData2,
+        }, {
+            label: "Vị trí cây 3",
+            lineTension: 0.3,
+            backgroundColor: "white",
+            borderColor: "green",
+            pointRadius: 5,
+            pointBackgroundColor: "green",
+            pointBorderColor: "rgba(255,255,255,0.8)",
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(0,255,0,0.8)",
+            pointHitRadius: 50,
+            pointBorderWidth: 2,
+            data: windData3,
+        }, {
+            label: "Vị trí cây 4",
+            lineTension: 0.3,
+            backgroundColor: "white",
+            borderColor: "rgba(241, 196, 15,1.0)",
+            pointRadius: 5,
+            pointBackgroundColor: "rgba(241, 196, 15,1.0)",
+            pointBorderColor: "rgba(255,255,255,0.8)",
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(241, 196, 15, 0.8)",
+            pointHitRadius: 50,
+            pointBorderWidth: 2,
+            data: windData4,
         }],
     },
     options: {
@@ -275,12 +325,12 @@ var myLineChart2 = new Chart(ctx3, {
 var myBarChart1 = new Chart(ctx2, {
     type: 'bar',
     data: {
-        labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        labels: ["00:00 AM", "01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 AM", "06:00 AM"],
         datasets: [{
             label: "Humidity %",
             backgroundColor: "rgba(2,117,216,1)",
             borderColor: "rgba(2,117,216,1)",
-            data: [33, 18, 45, 27, 35, 77, 60],
+            data: hudmidityData1,
         }],
     },
     options: {
@@ -316,12 +366,12 @@ var myBarChart1 = new Chart(ctx2, {
 var myBarChart2 = new Chart(ctx4, {
     type: 'bar',
     data: {
-        labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        labels: ["00:00 AM", "01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 AM", "06:00 AM"],
         datasets: [{
             label: "ADXL345",
             backgroundColor: "rgba(2,117,216,1)",
             borderColor: "rgba(2,117,216,1)",
-            data: [0, 10, 20, 30, 40, 80, 60, 70, 90, 100, 75, 67],
+            data: [25, 10, 20, 30, 40, 80, 60, 70, 90, 100, 75, 67],
         }],
     },
     options: {
