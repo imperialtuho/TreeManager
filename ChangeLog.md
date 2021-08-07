@@ -1,7 +1,15 @@
+    V1.0.2 Aug 8th 2021
+New feature:
+ -
+Bug fixes:
+ -
+Known bugs:
+ -
+
 
 <!--  -->
 
-    V1.0.1
+    V1.0.1 Aug 7th 2021
 New feature:
  - Added Search id function on search bar navbar.
  - More devices screen responsibility.
@@ -29,7 +37,7 @@ Known bugs:
 <!--  -->
 
 
-    V1.0.0
+    V1.0.0 Aug 5th 2021
 New feature:
  - Async to server, compatible for every devices.
  - Over views, navbar, desktop responsive.
