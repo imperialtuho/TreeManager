@@ -1,11 +1,29 @@
+    V1.0.2 Aug 13th 2021
+
+New feature:
+ - Improve website stability on mobile devices.
+ - Improve Front-end looks.
+ - Screen with from 768px or less than 576px now more flexible.
+
+Bug fixes:
+ - No longer in dev-mode application.
+ - Fixed unstability website responsed on small screen / mobile devices.
+
+Known bugs:
+ - Icon sometimes displays in low resolution.
+ - Running in background or using Tab may cause low resolution display for some on map Icons.
+
+
+<!--  -->
+
     Small patch update Aug 8th 2021
 New feature:
- - The Wind Volecity Chart is now continuously updated
+ - The Wind Volecity Chart is now continuously updated.
  - The Hudmidity Chart updated.
  - Battery Chart updated.
  - ADXL345 rendered.
 Bug fixes:
- - Improve website stability
+ - Improve website stability.
  
 Known bugs:
  - ADXL345 still not real-time updating.

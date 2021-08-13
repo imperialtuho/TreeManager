@@ -102,8 +102,8 @@ async function drawChart() {
     myLineChart2.update()
     myBarChart1.update()
     myBarChart2.update()
-    console.log('Updated')
-    console.log(batteryData1)
+    console.log('Charts Updated')
+    // console.log(batteryData1)
 }
 
 /* Set Hour labels */
@@ -113,17 +113,19 @@ var hours = ["00:00 AM", "01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 
     "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM"
 ];
 async function setLabels() {
-    var nextMonthIndex = hours.indexOf(myLineChart1.data.labels[myLineChart1.data.labels.length - 1]) + 1;
-    var nextMonthName = hours[nextMonthIndex] != undefined ? hours[nextMonthIndex] : "00:00 AM";
 
-    myLineChart1.data.labels.push(nextMonthName)
+    var nextIndex = hours.indexOf(myLineChart1.data.labels[myLineChart1.data.labels.length - 1]) + 1;
+    var nextIndexName = hours[nextIndex] != undefined ? hours[nextIndex] : "00:00 AM";
+
+    myLineChart1.data.labels.push(nextIndexName)
     myLineChart1.data.labels.shift()
 
-    myLineChart2.data.labels.push(nextMonthName)
+    myLineChart2.data.labels.push(nextIndexName)
     myLineChart2.data.labels.shift()
 
-    myBarChart1.data.labels.push(nextMonthName)
+    myBarChart1.data.labels.push(nextIndexName)
     myBarChart1.data.labels.shift()
+
 }
 
 

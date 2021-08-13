@@ -16,10 +16,7 @@ var endangeredTree = L.icon({
     iconSize: [30, 30]
 })
 
-var data = [{
-    "loc": [41.575330, 13.102411],
-    "title": "aquamarine"
-}]
+
 /* Create map view */
 var map = L.map('map', {}).setView([10.031517, 105.767851], 7) // Default Coordiante, B1 CTU CAN THO [10.031517, 105.767851] [Lat, Long]
 var marker = L.marker([10.031517, 105.767851], {}).addTo(map)
@@ -37,11 +34,9 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 
 
 //[GET] data from api
-MapDataFetch()
 async function MapDataFetch() {
     const response = await fetch("/api")
     const data = await response.json()
-    console.log(data)
 
     for (item of data) {
 
@@ -107,30 +102,33 @@ async function SearchDataFetch() {
     for (i = 0; i < Object.keys(data).length; i++) {
         data_length.push(`${i+1}`)
     }
-    console.log(data_length)
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const Data_type = urlParams.get('q')
-    console.log(Data_type);
 
     if (data_length.includes(Data_type) || Data_type == null) {
         pos = Data_type
-        console.log('executed')
+        console.log(`ID ${Data_type}`)
     } else {
         alert("Not found")
         pos = '-1'
     }
 
     parseInt(pos)
-    console.log(pos)
+
     number = pos
     number--
-    console.log(number)
+
     node_data = data[number]
-    console.log(node_data)
+
     map.setView([node_data.Coordinate.Latitude, node_data.Coordinate.Longitude], 10)
 }
 SearchDataFetch()
 
 /* TEST ENV*/
+
+setInterval(() => {
+    MapDataFetch()
+    console.log("Map updated!")
+}, 3000)
