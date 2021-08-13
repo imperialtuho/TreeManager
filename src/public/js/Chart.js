@@ -103,7 +103,6 @@ async function drawChart() {
     myBarChart1.update()
     myBarChart2.update()
     console.log('Charts Updated')
-    // console.log(batteryData1)
 }
 
 /* Set Hour labels */
@@ -135,6 +134,7 @@ setInterval(() => {
     drawChart()
 }, 3000)
 
+
 /* Chart selection */
 
 var ctx1 = document.getElementById("myAreaChart1");
@@ -144,7 +144,7 @@ var ctx3 = document.getElementById("myAreaChart2");
 var ctx4 = document.getElementById("myBarChart2");
 
 
-// Area Chart Example
+/* Wind Data Chart */
 var myLineChart1 = new Chart(ctx1, {
     type: 'line',
     data: {
@@ -233,7 +233,7 @@ var myLineChart1 = new Chart(ctx1, {
     }
 });
 
-
+/* Battery Data Chart */
 var myLineChart2 = new Chart(ctx3, {
     type: 'line',
     data: {
@@ -323,7 +323,7 @@ var myLineChart2 = new Chart(ctx3, {
 });
 
 
-// Bar Chart Example
+/* Hudmidity Data Chart */
 var myBarChart1 = new Chart(ctx2, {
     type: 'bar',
     data: {
@@ -365,6 +365,8 @@ var myBarChart1 = new Chart(ctx2, {
     }
 });
 
+
+/* ADXL345 Data Chart */
 var myBarChart2 = new Chart(ctx4, {
     type: 'bar',
     data: {
@@ -405,8 +407,3 @@ var myBarChart2 = new Chart(ctx4, {
         }
     }
 });
-
-
-
-
-window.onload = function () {}

@@ -18,7 +18,13 @@ var endangeredTree = L.icon({
 
 
 /* Create map view */
-var map = L.map('map', {}).setView([10.031517, 105.767851], 7) // Default Coordiante, B1 CTU CAN THO [10.031517, 105.767851] [Lat, Long]
+var defaultCoordinate = [10.031517, 105.767851] // Default Coordiante, B1 CTU CAN THO [10.031517, 105.767851] [Lat, Long]
+
+var map = L.map('map', {
+    minZoom: 7,
+    maxZoom: 19
+}).setView(defaultCoordinate, 7)
+
 var marker = L.marker([10.031517, 105.767851], {}).addTo(map)
 
 marker.bindPopup('Vị trí mặt định tại B1 CTU')
@@ -29,7 +35,7 @@ var popup = L.popup();
 //layer tile set
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-    maxZoom: 20, // Max Zoom
+    maxZoom: 30, // Max Zoom
 }).addTo(map);
 
 
@@ -40,19 +46,19 @@ async function MapDataFetch() {
 
     for (item of data) {
 
-        nodeName = item.Name
-        status = item.Status
-        x = item.ADXL345.X
-        y = item.ADXL345.Y
-        z = item.ADXL345.Z
-        description = item.Description
-        hud = item.Hud
-        temp = item.Temp
-        wind = item.Wind
-        lat = item.Coordinate.Latitude
-        lon = item.Coordinate.Longitude
+        nodeName = item.Name //ID
+        status = item.Status //Status
+        x = item.ADXL345.X //X
+        y = item.ADXL345.Y //Y
+        z = item.ADXL345.Z //Z
+        description = item.Description //Description
+        hud = item.Hud //Hudmidity
+        temp = item.Temp //Temparature
+        wind = item.Wind //Wind
+        lat = item.Coordinate.Latitude //Latitude
+        lon = item.Coordinate.Longitude //Longitude
 
-        // Check status for map icon popup
+        // Check status for the map icon popup
 
         if (status === "Good") {
             status = "An toàn"
@@ -73,7 +79,7 @@ async function MapDataFetch() {
 
         // console.log(`${name} ,${status} ,${x} ,${y} ,${z} ,${description} ,${hud} ,${temp} ,${wind} , ${lat} , ${lon} `)
 
-        //Make Popup content here
+        //Make Popup contents here
         marker.bindPopup(`
 
             ID: ${nodeName}<br>
@@ -90,44 +96,44 @@ async function MapDataFetch() {
 
 }
 
+/* Search Function */
 
 async function SearchDataFetch() {
 
     const response = await fetch("/api")
     const data = await response.json()
 
-    var data_length = []
-    var pos, node_data, number
+    var data_length = [] //For storing MongoDB object length
+    var queryNumber, nodeData
 
+    //Store the object length for comparation
     for (i = 0; i < Object.keys(data).length; i++) {
         data_length.push(`${i+1}`)
     }
-
+    //GET number on url ?q=
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const Data_type = urlParams.get('q')
 
+    //Check the Data_type of the query in the length || null ?
     if (data_length.includes(Data_type) || Data_type == null) {
-        pos = Data_type
+        queryNumber = Data_type
         console.log(`ID ${Data_type}`)
     } else {
         alert("Not found")
-        pos = '-1'
+        queryNumber = '-1'
     }
 
-    parseInt(pos)
+    parseInt(queryNumber) //Convert to Num
+    queryNumber--
+    nodeData = data[queryNumber] //[GET] nodeData at query position
+    //Set view to the Node position
+    map.setView([nodeData.Coordinate.Latitude, nodeData.Coordinate.Longitude], 15)
 
-    number = pos
-    number--
-
-    node_data = data[number]
-
-    map.setView([node_data.Coordinate.Latitude, node_data.Coordinate.Longitude], 10)
 }
 SearchDataFetch()
 
-/* TEST ENV*/
-
+/* RUN ENV*/
 setInterval(() => {
     MapDataFetch()
     console.log("Map updated!")

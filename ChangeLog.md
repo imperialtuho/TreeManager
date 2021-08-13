@@ -1,6 +1,18 @@
+    Small patch update Aug 13th 2021
+New features:
+ 
+Bug fixes:
+ - Optimized Front-End code rendering helps devices load faster.
+Known bugs:
+ - Icon still displays in low resolution sometimes.
+
+
+ <!--  -->
+
+
     V1.0.2 Aug 13th 2021
 
-New feature:
+New features:
  - Improve website stability on mobile devices.
  - Improve Front-end looks.
  - Screen with from 768px or less than 576px now more flexible.
@@ -17,7 +29,7 @@ Known bugs:
 <!--  -->
 
     Small patch update Aug 8th 2021
-New feature:
+New features:
  - The Wind Volecity Chart is now continuously updated.
  - The Hudmidity Chart updated.
  - Battery Chart updated.
@@ -32,7 +44,7 @@ Known bugs:
 <!--  -->
 
     V1.0.1 Aug 7th 2021
-New feature:
+New features:
  - Added Search id function on search bar navbar.
  - More devices screen responsibility.
  - Update infomation from MongoDB cloud server to the map each seconds.
@@ -60,7 +72,7 @@ Known bugs:
 
 
     V1.0.0 Aug 5th 2021
-New feature:
+New features:
  - Async to server, compatible for every devices.
  - Over views, navbar, desktop responsive.
  - Update infomation from MongoDB cloud server to the map.
