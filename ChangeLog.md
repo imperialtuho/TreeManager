@@ -1,3 +1,17 @@
+    Small patch update Aug 15th 2021
+New features:
+
+
+Bug fixes:
+ - Fixed maxZoom limits bug.
+ - Optimized rendering and fixed Coding logic.
+
+Known bugs:
+
+
+ <!--  -->
+
+
     V1.0.3 Aug 15th 2021
 New features:
  - Added reload marker after 5s.
