@@ -1,10 +1,35 @@
+    V1.0.3 Aug 15th 2021
+New features:
+ - Added reload marker after 5s.
+ - Added Cluster.
+ - Map now has more reliable.
+ - Optimized for low spec devices.
+ - Added Zoom limits.
+
+Bug fixes:
+ - Optimized Front-End code rendering helps devices load faster.
+ - Fixed Icon displays in low resolution.
+ - Fixed Marker overlapped.
+ - Fixed low resolution map zoom.
+ - No longer causes lag or RAM blooding.
+
+Known bugs:
+ - It's will be inconvenienced on Popup because it will be disappeared after 5s and be needed tap to it to re-open.
+ - Chart still not completely added and worked.
+
+
+ <!--  -->
+
+
     Small patch update Aug 13th 2021
 New features:
  
 Bug fixes:
  - Optimized Front-End code rendering helps devices load faster.
+
 Known bugs:
  - Icon still displays in low resolution sometimes.
+ - Marker overlapped after long uses.
 
 
  <!--  -->
