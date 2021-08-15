@@ -30,6 +30,7 @@ var map = L.map('map', {
 
 var markers = L.markerClusterGroup({
     chunkedLoading: true,
+    maxClusterRadius: 650,
     spiderfyOnMaxZoom: false
 });
 

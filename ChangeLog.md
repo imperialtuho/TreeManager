@@ -1,6 +1,6 @@
     Small patch update Aug 15th 2021
 New features:
-
+ - Added maxClusterRadius to the map, now Markers will collapse at 650.
 
 Bug fixes:
  - Fixed maxZoom limits bug.
