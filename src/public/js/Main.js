@@ -15,14 +15,14 @@ var endangeredTree = L.icon({
 
 /* Map Init || Khởi tạo Map */
 var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 10,
+        maxZoom: 20,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Points &copy 2012 LINZ'
     }),
     latlng = L.latLng(10.031517, 105.767851); /*10.031517, 105.767851 vị trí tại B1 CTU */
 
 var map = L.map('map', {
     center: latlng,
-    maxZoom: 19,
+    maxZoom: 20,
     minZoom: 4,
     zoom: 7,
     layers: [tiles]
@@ -41,9 +41,9 @@ if ('geolocation' in navigator) {
         defX = position.coords.latitude
         defY = position.coords.longitude
         var marker = L.marker([defX, defY])
-        marker.bindPopup(`Vị trí hiện tại của bạn`) // lat: ${defX.toFixed(3)} long: ${defY.toFixed(3)}
-        marker.openPopup()
         marker.addTo(map)
+        marker.bindPopup(`Vị trí hiện tại của bạn`, {}) // lat: ${defX.toFixed(3)} long: ${defY.toFixed(3)}
+        marker.openPopup()
     })
 } else {
     console.log('geolocation not available')
@@ -69,7 +69,6 @@ async function MapDataFetch() {
         // Check status for the map icon popup || Kiểm tra trạng thái để sửa đổi Icon
         if (stat === "Good") {
             stat = "An toàn"
-
             var marker = L.marker([lat, lon], {
                 icon: treeIcon
             })
@@ -89,7 +88,6 @@ async function MapDataFetch() {
             })
             markers.addLayer(marker)
             map.addLayer(markers)
-
         }
 
         //Make Popup contents here || Tạo nội dung cho Popup
