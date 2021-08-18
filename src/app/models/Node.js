@@ -4,11 +4,11 @@ const Schema = mongoose.Schema
 const node = new Schema({
     Name: {
         type: String,
-        default: 'Node #'
+        default: '#'
     },
     Description: {
         type: String,
-        default: "This is description"
+        default: 'This is description'
     },
     Coordinate: {
         Longitude: {

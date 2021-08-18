@@ -132,7 +132,7 @@ async function setLabels() {
 
 setInterval(() => {
     drawChart()
-}, 3000)
+}, 5000)
 
 
 /* Chart selection */

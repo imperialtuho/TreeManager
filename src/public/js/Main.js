@@ -23,7 +23,7 @@ var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 var map = L.map('map', {
     center: latlng,
     maxZoom: 20,
-    minZoom: 4,
+    minZoom: 7,
     zoom: 7,
     layers: [tiles]
 });
@@ -31,7 +31,8 @@ var map = L.map('map', {
 var markers = L.markerClusterGroup({
     chunkedLoading: true,
     maxClusterRadius: 650,
-    spiderfyOnMaxZoom: false
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false
 });
 
 /* GET Current Position || Lấy vị trí hiện tại của thiết bị truy cập web */

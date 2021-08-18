@@ -1,3 +1,22 @@
+    Small patch update Aug 18th 2021
+Improvements:
+ - Removed Polygon cover on hover event on Node.
+ - Added Short cut icon.
+ - Re-rendered maxZoom, minZoom limits.
+ - High quality updated.
+
+
+Bug fixes:
+ - No fixes in this Patch.
+
+
+Known bugs:
+ - Non-bug spotted.
+
+
+ <!--  -->
+
+
     Small patch update Aug 15th 2021
 New features:
  - Added maxClusterRadius to the map, now Markers will collapse at 650.
