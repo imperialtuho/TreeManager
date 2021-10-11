@@ -24,13 +24,13 @@ var map = L.map('map', {
     center: latlng,
     maxZoom: 20,
     minZoom: 7,
-    zoom: 7,
+    zoom: 10,
     layers: [tiles]
 });
 
 var markers = L.markerClusterGroup({
     chunkedLoading: true,
-    maxClusterRadius: 650,
+    maxClusterRadius: 50,
     spiderfyOnMaxZoom: true,
     showCoverageOnHover: false
 });
@@ -51,7 +51,16 @@ if ('geolocation' in navigator) {
     console.log('geolocation not available')
 }
 
-//[GET] data from api || Lấy dữ liệu từ API
+//LongLat Converter || Hàm chuyển đổi vị trí
+function handleLongLat(a){
+    var x, y, z
+    x = parseInt(a / 100)
+    y = (a - x*100)/60
+    z = (x + y).toFixed(5)
+    return z
+}
+
+//[GET] Data from API || Lấy dữ liệu từ API
 async function MapDataFetch() {
     const response = await fetch("/api")
     const data = await response.json()
@@ -65,8 +74,8 @@ async function MapDataFetch() {
         hud = item.Hud //Hudmidity                      || Độ ẩm
         temp = item.Temp //Temparature                  || Nhiệt độ
         wind = item.Wind //Wind                         || Gió
-        lat = item.Coordinate.Latitude //Latitude       || Vĩ độ
-        lon = item.Coordinate.Longitude //Longitude     || Kinh độ
+        lat = handleLongLat(item.Coordinate.Latitude) //Latitude       || Vĩ độ
+        lon = handleLongLat(item.Coordinate.Longitude) //Longitude     || Kinh độ
 
         // Check status for the map icon popup || Kiểm tra trạng thái để sửa đổi Icon
         if (stat === "Good") {

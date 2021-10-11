@@ -1,3 +1,21 @@
+    V1.0.4 Oct 11th 2021
+
+Improvements:
+ - Longitude and Latitude are now corrected displaying on map.
+ - Re-rendered maxZoom, minZoom limits.
+ - Zoom is now set to 10.
+ - Cluster set to 50.
+
+Bug fixes:
+ - No fixes in this Patch.
+
+Known bugs:
+ - Non-bug spotted in this patch.
+
+
+<!--  -->
+
+
     Small patch update Aug 18th 2021
 Improvements:
  - Removed Polygon cover on hover event on Node.
@@ -11,7 +29,7 @@ Bug fixes:
 
 
 Known bugs:
- - Non-bug spotted.
+ - Non-bug spotted in this patch.
 
 
  <!--  -->
