@@ -1,6 +1,6 @@
 {
   "name": "treemanager",
-  "version": "1.0.3b",
+  "version": "1.0.4",
   "description": "Tree Manager",
   "main": "app.js",
   "scripts": {
