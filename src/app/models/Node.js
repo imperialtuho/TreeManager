@@ -2,13 +2,17 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const node = new Schema({
+    id: {
+        type: String,
+        default: "#"
+    },
     Ten: {
         type: String,
         default: '#'
     },
     Mo_ta: {
         type: String,
-        default: 'Đây là vị trí cây số #'
+        default: 'Đây là vị trí cây số'
     },
     Toa_do:[],
     Pin: {
@@ -53,7 +57,7 @@ const node = new Schema({
     },
     Trang_thai: {
         type: String,
-        default: 'Good'
+        default: 'Xanh'
     },
 }, {
     timestamps: true

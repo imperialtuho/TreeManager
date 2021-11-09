@@ -15,8 +15,11 @@ var x, y, z, hud, temp, wind,
 
     /* ADXL345 Data */
 
-    adxl345Data  = [],
-    adxl345Data2 = [],
+    adxl345_X_Data1  = [1, 3, 2, 1, 2],
+    adxl345_Y_Data1  = [3 ,1, 3, 2, 1],
+
+    adxl345_X_Data2  = [1, 3, 2, 1, 2],
+    adxl345_Y_Data2  = [3 ,1, 3, 2, 1],
 
     /*  Wind Volecity Data */
 
@@ -58,7 +61,16 @@ async function MapDataPushFetch() {
 
     windData3.push(data[2].Gio) /*Data 3*/
     windData3.shift()
-
+    /* Pushing to ADXL Data 1  Body*/ 
+    adxl345_X_Data1.push(data[0].ADXL345_1.X)
+    adxl345_X_Data1.shift()
+    adxl345_Y_Data1.push(data[0].ADXL345_1.Y)
+    adxl345_Y_Data1.shift()
+    /* Pushing to ADXL Data 2  Root*/
+    adxl345_X_Data2.push(data[0].ADXL345_2.X)
+    adxl345_X_Data2.shift()
+    adxl345_Y_Data2.push(data[0].ADXL345_2.Y)
+    adxl345_Y_Data2.shift()
 }
 
 /* Update Chart Data */
@@ -69,6 +81,7 @@ async function drawChart() {
     myLineChart2.update()
     myBarChart1.update()
     myBarChart2.update()
+    myBarChart3.update()
     console.log('Charts Updated')
 }
 
@@ -92,6 +105,12 @@ async function setLabels() {
     myBarChart1.data.labels.push(nextIndexName)
     myBarChart1.data.labels.shift()
 
+    myBarChart2.data.labels.push(nextIndexName)
+    myBarChart2.data.labels.shift()
+
+    myBarChart3.data.labels.push(nextIndexName)
+    myBarChart3.data.labels.shift()
+
 }
 
 
@@ -104,12 +123,11 @@ setInterval(() => {
 
 /* Chart selection */
 
-var ctx1 = document.getElementById("myAreaChart1");
-var ctx2 = document.getElementById("myBarChart1");
-
-var ctx3 = document.getElementById("myAreaChart2");
-var ctx4 = document.getElementById("myBarChart2");
-
+var ctx1 = document.getElementById("myAreaChart1")
+var ctx2 = document.getElementById("myBarChart1")
+var ctx3 = document.getElementById("myAreaChart2")
+var ctx4 = document.getElementById("myBarChart2")
+var ctx5 = document.getElementById("myBarChart3")
 
 /* Wind Data Chart */
 var myLineChart1 = new Chart(ctx1, {
@@ -125,7 +143,7 @@ var myLineChart1 = new Chart(ctx1, {
             pointBackgroundColor: "blue",
             pointBorderColor: "rgba(255,255,255,0.8)",
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(2,117,216,0.8)",
+            pointHoverBackgroundColor: "rgba(2,117,216, 1)",
             pointHitRadius: 50,
             pointBorderWidth: 2,
             data: windData1,
@@ -138,7 +156,7 @@ var myLineChart1 = new Chart(ctx1, {
             pointBackgroundColor: "red",
             pointBorderColor: "rgba(255,255,255,0.8)",
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(255, 0, 0, 0.8)",
+            pointHoverBackgroundColor: "rgba(255, 0, 0, 1)",
             pointHitRadius: 50,
             pointBorderWidth: 2,
             data: windData2,
@@ -151,7 +169,7 @@ var myLineChart1 = new Chart(ctx1, {
             pointBackgroundColor: "green",
             pointBorderColor: "rgba(255,255,255,0.8)",
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(0,255,0,0.8)",
+            pointHoverBackgroundColor: "rgba(0,255,0, 1)",
             pointHitRadius: 50,
             pointBorderWidth: 2,
             data: windData3,
@@ -201,7 +219,7 @@ var myLineChart2 = new Chart(ctx3, {
             pointBackgroundColor: "blue",
             pointBorderColor: "rgba(255,255,255,0.8)",
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(2,117,216,0.8)",
+            pointHoverBackgroundColor: "rgba(2,117,216, 1)",
             pointHitRadius: 50,
             pointBorderWidth: 2,
             data: batteryData1,
@@ -214,7 +232,7 @@ var myLineChart2 = new Chart(ctx3, {
             pointBackgroundColor: "red",
             pointBorderColor: "rgba(255,255,255,0.8)",
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(255, 0, 0, 0.8)",
+            pointHoverBackgroundColor: "rgba(255, 0, 0, 1)",
             pointHitRadius: 50,
             pointBorderWidth: 2,
             data: batteryData2,
@@ -227,7 +245,7 @@ var myLineChart2 = new Chart(ctx3, {
             pointBackgroundColor: "green",
             pointBorderColor: "rgba(255,255,255,0.8)",
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(0,255,0,0.8)",
+            pointHoverBackgroundColor: "rgba(0,255,0, 1)",
             pointHitRadius: 50,
             pointBorderWidth: 2,
             data: batteryData3,
@@ -318,39 +336,123 @@ var myBarChart1 = new Chart(ctx2, {
 });
 
 
-/* ADXL345 Data Chart */
+/* ADXL345_1 Data Chart */
 var myBarChart2 = new Chart(ctx4, {
-    type: 'bar',
+    type: 'line',
     data: {
         labels: ["00:00 AM", "01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 AM", "06:00 AM"],
         datasets: [{
-            label: "ADXL345",
-            backgroundColor: "rgba(2,117,216,1)",
-            borderColor: "rgba(2,117,216,1)",
-            data: [25, 10, 20, 30, 40, 80, 60, 70, 90, 100, 75, 67],
+            label: "X",
+            lineTension: 0.3,
+            backgroundColor: "white",
+            borderColor: "blue",
+            pointRadius: 5,
+            pointBackgroundColor: "blue",
+            pointBorderColor: "rgba(255,255,255,0.8)",
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(2,117,216, 1)",
+            pointHitRadius: 50,
+            pointBorderWidth: 2,
+            data: adxl345_X_Data1,
+        }, {
+            label: "Y",
+            lineTension: 0.3,
+            backgroundColor: "white",
+            borderColor: "red",
+            pointRadius: 5,
+            pointBackgroundColor: "red",
+            pointBorderColor: "rgba(255,255,255,0.8)",
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(255, 0, 0, 1)",
+            pointHitRadius: 50,
+            pointBorderWidth: 2,
+            data: adxl345_Y_Data1,
         }],
     },
     options: {
         scales: {
             xAxes: [{
                 time: {
-                    unit: 'month'
+                    unit: 'date'
                 },
                 gridLines: {
                     display: false
                 },
                 ticks: {
-                    maxTicksLimit: 6
+                    maxTicksLimit: 7
                 }
             }],
             yAxes: [{
                 ticks: {
                     min: 0,
-                    max: 15000,
+                    max: 100,
                     maxTicksLimit: 5
                 },
                 gridLines: {
-                    display: true
+                    color: "rgba(0, 0, 0, .125)",
+                }
+            }],
+        },
+        legend: {
+            display: false
+        }
+    }
+});
+
+/* ADXL345_2 Data Chart */
+var myBarChart3 = new Chart(ctx5, {
+    type: 'line',
+    data: {
+        labels: ["00:00 AM", "01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 AM", "06:00 AM"],
+        datasets: [{
+            label: "X",
+            lineTension: 0.3,
+            backgroundColor: "white",
+            borderColor: "blue",
+            pointRadius: 5,
+            pointBackgroundColor: "blue",
+            pointBorderColor: "rgba(255,255,255,0.8)",
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(2,117,216, 1)",
+            pointHitRadius: 50,
+            pointBorderWidth: 2,
+            data: adxl345_X_Data2,
+        }, {
+            label: "Y",
+            lineTension: 0.3,
+            backgroundColor: "white",
+            borderColor: "green",
+            pointRadius: 5,
+            pointBackgroundColor: "green",
+            pointBorderColor: "rgba(255,255,255,0.8)",
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(0, 255, 0, 1)",
+            pointHitRadius: 50,
+            pointBorderWidth: 2,
+            data: adxl345_Y_Data2,
+        }],
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                time: {
+                    unit: 'date'
+                },
+                gridLines: {
+                    display: false
+                },
+                ticks: {
+                    maxTicksLimit: 7
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                    max: 100,
+                    maxTicksLimit: 5
+                },
+                gridLines: {
+                    color: "rgba(0, 0, 0, .125)",
                 }
             }],
         },
