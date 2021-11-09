@@ -9,23 +9,23 @@ var x, y, z, hud, temp, wind,
 
     /* Hudmidity Data */
 
-    hudmidityData1 = [0, 0, 0, 0, 1],
-    hudmidityData2 = [0, 0, 0, 0, 2],
-    hudmidityData3 = [0, 0, 0, 0, 3],
+    hudmidityData1 = [69, 70, 71, 68, 70],
+    hudmidityData2 = [70, 69, 72, 71, 72],
+    hudmidityData3 = [68, 71, 70, 70, 71],
 
     /* ADXL345 Data */
 
     adxl345_X_Data1  = [1, 3, 2, 1, 2],
     adxl345_Y_Data1  = [3 ,1, 3, 2, 1],
 
-    adxl345_X_Data2  = [1, 3, 2, 1, 2],
-    adxl345_Y_Data2  = [3 ,1, 3, 2, 1],
+    adxl345_X_Data2  = [2, 3, 2, 3, 2.5],
+    adxl345_Y_Data2  = [3 ,2, 2.3, 2.7, 1.3],
 
     /*  Wind Volecity Data */
 
-    windData1 = [0, 0, 0, 0, 1],
-    windData2 = [0, 0, 0, 0, 2],
-    windData3 = [0, 0, 0, 0, 3]
+    windData1 = [5, 7, 3, 8, 6],
+    windData2 = [4, 2, 5, 7, 5],
+    windData3 = [7, 6, 7, 7.5, 9]
 
 async function MapDataPushFetch() {
     const response = await fetch("/api")
@@ -118,7 +118,7 @@ async function setLabels() {
 
 setInterval(() => {
     drawChart()
-}, 5000)
+}, 3600000)
 
 
 /* Chart selection */
