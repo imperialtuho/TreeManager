@@ -87,14 +87,11 @@ async function drawChart() {
 
 /* Set Hour labels */
 
-var hours = ["00:00 AM", "01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 AM",
-    "06:00 AM", "07:00 AM", "08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM",
-    "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM"
-];
+var hours = [" ", " ", " ", " ", " ", " ", " "];
 async function setLabels() {
 
     var nextIndex = hours.indexOf(myLineChart1.data.labels[myLineChart1.data.labels.length - 1]) + 1;
-    var nextIndexName = hours[nextIndex] != undefined ? hours[nextIndex] : "00:00 AM";
+    var nextIndexName = hours[nextIndex] != undefined ? hours[nextIndex] : " ";
 
     myLineChart1.data.labels.push(nextIndexName)
     myLineChart1.data.labels.shift()
@@ -118,7 +115,7 @@ async function setLabels() {
 
 setInterval(() => {
     drawChart()
-}, 3600000)
+}, 10000)
 
 
 /* Chart selection */
@@ -133,7 +130,7 @@ var ctx5 = document.getElementById("myBarChart3")
 var myLineChart1 = new Chart(ctx1, {
     type: 'line',
     data: {
-        labels: ["00:00 AM", "01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 AM", "06:00 AM"],
+        labels: [" ", " ", " ", " ", " ", " ", " "],
         datasets: [{
             label: "Vị trí cây 1",
             lineTension: 0.3,
@@ -177,18 +174,13 @@ var myLineChart1 = new Chart(ctx1, {
     },
     options: {
         scales: {
-            xAxes: [{
-                time: {
-                    unit: 'date'
-                },
-                gridLines: {
-                    display: false
-                },
-                ticks: {
-                    maxTicksLimit: 7
+            x:{
+                title: {
+                    display: true,
+                    text: 'Thời Gian'
                 }
-            }],
-            yAxes: [{
+            },
+            y:{
                 ticks: {
                     min: 0,
                     max: 1000,
@@ -196,8 +188,12 @@ var myLineChart1 = new Chart(ctx1, {
                 },
                 gridLines: {
                     color: "rgba(0, 0, 0, .125)",
+                },
+                title: {
+                    display: true,
+                    text:'Giá trị'
                 }
-            }],
+            },
         },
         legend: {
             display: false
@@ -209,7 +205,7 @@ var myLineChart1 = new Chart(ctx1, {
 var myLineChart2 = new Chart(ctx3, {
     type: 'line',
     data: {
-        labels: ["00:00 AM", "01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 AM", "06:00 AM"],
+        labels: [" ", " ", " ", " ", " ", " ", " "],
         datasets: [{
             label: "Vị trí cây 1",
             lineTension: 0.3,
@@ -253,27 +249,26 @@ var myLineChart2 = new Chart(ctx3, {
     },
     options: {
         scales: {
-            xAxes: [{
-                time: {
-                    unit: 'date'
-                },
-                gridLines: {
-                    display: false
-                },
-                ticks: {
-                    maxTicksLimit: 7
+            x:{
+                title: {
+                    display: true,
+                    text: 'Thời Gian'
                 }
-            }],
-            yAxes: [{
+            },
+            y:{
                 ticks: {
                     min: 0,
-                    max: 100,
+                    max: 1000,
                     maxTicksLimit: 5
                 },
                 gridLines: {
                     color: "rgba(0, 0, 0, .125)",
+                },
+                title: {
+                    display: true,
+                    text:'Giá trị'
                 }
-            }],
+            },
         },
         legend: {
             display: false
@@ -286,7 +281,7 @@ var myLineChart2 = new Chart(ctx3, {
 var myBarChart1 = new Chart(ctx2, {
     type: 'bar',
     data: {
-        labels: ["00:00 AM", "01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 AM", "06:00 AM"],
+        labels: [" ", " ", " ", " ", " ", " ", " "],
         datasets: [
             {
                 label: "Vị trí cây 1",
@@ -307,27 +302,26 @@ var myBarChart1 = new Chart(ctx2, {
     },
     options: {
         scales: {
-            xAxes: [{
-                time: {
-                    unit: 'month'
-                },
-                gridLines: {
-                    display: false
-                },
-                ticks: {
-                    maxTicksLimit: 6
+            x:{
+                title: {
+                    display: true,
+                    text: 'Thời Gian'
                 }
-            }],
-            yAxes: [{
+            },
+            y:{
                 ticks: {
                     min: 0,
-                    max: 100,
+                    max: 1000,
                     maxTicksLimit: 5
                 },
                 gridLines: {
-                    display: true
+                    color: "rgba(0, 0, 0, .125)",
+                },
+                title: {
+                    display: true,
+                    text:'Giá trị'
                 }
-            }],
+            },
         },
         legend: {
             display: false
@@ -340,7 +334,7 @@ var myBarChart1 = new Chart(ctx2, {
 var myBarChart2 = new Chart(ctx4, {
     type: 'line',
     data: {
-        labels: ["00:00 AM", "01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 AM", "06:00 AM"],
+        labels: [" ", " ", " ", " ", " ", " ", " "],
         datasets: [{
             label: "X",
             lineTension: 0.3,
@@ -371,27 +365,26 @@ var myBarChart2 = new Chart(ctx4, {
     },
     options: {
         scales: {
-            xAxes: [{
-                time: {
-                    unit: 'date'
-                },
-                gridLines: {
-                    display: false
-                },
-                ticks: {
-                    maxTicksLimit: 7
+            x:{
+                title: {
+                    display: true,
+                    text: 'Thời Gian'
                 }
-            }],
-            yAxes: [{
+            },
+            y:{
                 ticks: {
                     min: 0,
-                    max: 100,
+                    max: 1000,
                     maxTicksLimit: 5
                 },
                 gridLines: {
                     color: "rgba(0, 0, 0, .125)",
+                },
+                title: {
+                    display: true,
+                    text:'Giá trị'
                 }
-            }],
+            },
         },
         legend: {
             display: false
@@ -403,7 +396,7 @@ var myBarChart2 = new Chart(ctx4, {
 var myBarChart3 = new Chart(ctx5, {
     type: 'line',
     data: {
-        labels: ["00:00 AM", "01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 AM", "06:00 AM"],
+        labels: [" ", " ", " ", " ", " ", " ", " "],
         datasets: [{
             label: "X",
             lineTension: 0.3,
@@ -434,27 +427,26 @@ var myBarChart3 = new Chart(ctx5, {
     },
     options: {
         scales: {
-            xAxes: [{
-                time: {
-                    unit: 'date'
-                },
-                gridLines: {
-                    display: false
-                },
-                ticks: {
-                    maxTicksLimit: 7
+            x:{
+                title: {
+                    display: true,
+                    text: 'Thời Gian'
                 }
-            }],
-            yAxes: [{
+            },
+            y:{
                 ticks: {
                     min: 0,
-                    max: 100,
+                    max: 1000,
                     maxTicksLimit: 5
                 },
                 gridLines: {
                     color: "rgba(0, 0, 0, .125)",
+                },
+                title: {
+                    display: true,
+                    text:'Giá trị'
                 }
-            }],
+            },
         },
         legend: {
             display: false
