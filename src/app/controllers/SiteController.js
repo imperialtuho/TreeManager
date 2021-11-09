@@ -34,7 +34,6 @@ class SiteController {
                 return
             })
             .catch(next)
-
     }
     //[GET]Search
     async search(req, res, next) {

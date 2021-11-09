@@ -2,37 +2,28 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const node = new Schema({
-    Name: {
+    Ten: {
         type: String,
         default: '#'
     },
-    Description: {
+    Mo_ta: {
         type: String,
-        default: 'This is description'
+        default: 'Đây là vị trí cây số #'
     },
-    Coordinate: {
-        Longitude: {
-            type: String,
-            default: 0
-        },
-        Latitude: {
-            type: String,
-            default: 0
-        },
-    },
-    Temp: {
+    Toa_do:[],
+    Pin: {
         String,
         default: 0
     },
-    Hud: {
+    Do_am: {
         String,
         default: 0
     },
-    Wind: {
+    Gio: {
         String,
         default: 0
     },
-    ADXL345: {
+    ADXL345_1: {
         X: {
             type: String,
             default: 0
@@ -46,7 +37,21 @@ const node = new Schema({
             default: 0
         },
     },
-    Status: {
+    ADXL345_2: {
+        X: {
+            type: String,
+            default: 0
+        },
+        Y: {
+            type: String,
+            default: 0
+        },
+        Z: {
+            type: String,
+            default: 0
+        },
+    },
+    Trang_thai: {
         type: String,
         default: 'Good'
     },

@@ -1,3 +1,19 @@
+    V1.1.0 Nov th 2021 (The Lastest Update)
+
+Improvements:
+ - Longitude and Latitude are now corrected displaying on map.
+ - Re-rendered maxZoom, minZoom limits.
+ - Zoom is set to 18.
+ - Cluster Radius changed to 30.
+
+Bug fixes:
+ - No fixes in this Patch.
+
+Known bugs:
+ - Non-bug spotted in this patch.
+
+
+
     V1.0.4 Oct 11th 2021
 
 Improvements:

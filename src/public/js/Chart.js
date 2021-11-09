@@ -3,94 +3,61 @@ var x, y, z, hud, temp, wind,
 
     /* Battery Data */
 
-    batteryData1 = [0, 0, 0, 0, 0],
-    batteryData2 = [0, 0, 0, 0, 0],
-    batteryData3 = [0, 0, 0, 0, 0],
-    batteryData4 = [0, 0, 0, 0, 0],
+    batteryData1 = [76, 77, 88, 78, 80],
+    batteryData2 = [75, 78, 82, 81, 83],
+    batteryData3 = [70, 74, 82, 87, 88],
 
     /* Hudmidity Data */
 
-    hudmidityData1 = [0, 0, 0, 0, 0],
-    hudmidityData2 = [0, 0, 0, 0, 0],
-    hudmidityData3 = [0, 0, 0, 0, 0],
-    hudmidityData4 = [0, 0, 0, 0, 0],
+    hudmidityData1 = [0, 0, 0, 0, 1],
+    hudmidityData2 = [0, 0, 0, 0, 2],
+    hudmidityData3 = [0, 0, 0, 0, 3],
 
     /* ADXL345 Data */
 
-    adxl345Data = [],
-
-    /* Temperature Data */
-
-    tempData1 = [0, 0, 0, 0, 0],
-    tempData2 = [0, 0, 0, 0, 0],
-    tempData3 = [0, 0, 0, 0, 0],
-    tempData4 = [0, 0, 0, 0, 0],
+    adxl345Data  = [],
+    adxl345Data2 = [],
 
     /*  Wind Volecity Data */
 
     windData1 = [0, 0, 0, 0, 1],
     windData2 = [0, 0, 0, 0, 2],
-    windData3 = [0, 0, 0, 0, 3],
-    windData4 = [0, 0, 0, 0, 4]
+    windData3 = [0, 0, 0, 0, 3]
 
 async function MapDataPushFetch() {
     const response = await fetch("/api")
     const data = await response.json()
 
     /* Pushing to Battery Data */
-    batteryData1.push(data[0].Hud) /*Data 1*/
+    batteryData1.push(data[0].Pin) /*Data 1*/
     batteryData1.shift()
 
-    batteryData2.push(data[1].Hud) /*Data 2*/
+    batteryData2.push(data[1].Pin) /*Data 2*/
     batteryData2.shift()
 
-    batteryData3.push(data[2].Hud) /*Data 3*/
+    batteryData3.push(data[2].Pin) /*Data 3*/
     batteryData3.shift()
-
-    batteryData4.push(data[3].Hud) /*Data 4*/
-    batteryData4.shift()
 
 
     /* Pushing to Hudmidity Data */
-    hudmidityData1.push(data[0].Hud) /*Data 1*/
+    hudmidityData1.push(data[0].Do_am) /*Data 1*/
     hudmidityData1.shift()
 
-    hudmidityData2.push(data[1].Hud) /*Data 2*/
+    hudmidityData2.push(data[1].Do_am) /*Data 2*/
     hudmidityData2.shift()
 
-    hudmidityData3.push(data[2].Hud) /*Data 3*/
+    hudmidityData3.push(data[2].Do_am) /*Data 3*/
     hudmidityData3.shift()
 
-    hudmidityData4.push(data[3].Hud) /*Data 4*/
-    hudmidityData4.shift()
-
-
-    /* Pushing to Temperature Data */
-    tempData1.push(data[0].Temp) /*Data 1*/
-    tempData1.shift()
-
-    tempData2.push(data[1].Temp) /*Data 2*/
-    tempData2.shift()
-
-    tempData3.push(data[2].Temp) /*Data 3*/
-    tempData3.shift()
-
-    tempData4.push(data[3].Temp) /*Data 4*/
-    tempData4.shift()
-
-
     /* Pushing to Wind Data */
-    windData1.push(data[0].Wind) /*Data 1*/
+    windData1.push(data[0].Gio) /*Data 1*/
     windData1.shift()
 
-    windData2.push(data[1].Wind) /*Data 2*/
+    windData2.push(data[1].Gio) /*Data 2*/
     windData2.shift()
 
-    windData3.push(data[2].Wind) /*Data 3*/
+    windData3.push(data[2].Gio) /*Data 3*/
     windData3.shift()
-
-    windData4.push(data[3].Wind) /*Data 4*/
-    windData4.shift()
 
 }
 
@@ -171,7 +138,7 @@ var myLineChart1 = new Chart(ctx1, {
             pointBackgroundColor: "red",
             pointBorderColor: "rgba(255,255,255,0.8)",
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(255,50,10,0.8)",
+            pointHoverBackgroundColor: "rgba(255, 0, 0, 0.8)",
             pointHitRadius: 50,
             pointBorderWidth: 2,
             data: windData2,
@@ -188,19 +155,6 @@ var myLineChart1 = new Chart(ctx1, {
             pointHitRadius: 50,
             pointBorderWidth: 2,
             data: windData3,
-        }, {
-            label: "Vị trí cây 4",
-            lineTension: 0.3,
-            backgroundColor: "white",
-            borderColor: "rgba(241, 196, 15,1.0)",
-            pointRadius: 5,
-            pointBackgroundColor: "rgba(241, 196, 15,1.0)",
-            pointBorderColor: "rgba(255,255,255,0.8)",
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(241, 196, 15, 0.8)",
-            pointHitRadius: 50,
-            pointBorderWidth: 2,
-            data: windData4,
         }],
     },
     options: {
@@ -260,7 +214,7 @@ var myLineChart2 = new Chart(ctx3, {
             pointBackgroundColor: "red",
             pointBorderColor: "rgba(255,255,255,0.8)",
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(255,50,10,0.8)",
+            pointHoverBackgroundColor: "rgba(255, 0, 0, 0.8)",
             pointHitRadius: 50,
             pointBorderWidth: 2,
             data: batteryData2,
@@ -276,20 +230,7 @@ var myLineChart2 = new Chart(ctx3, {
             pointHoverBackgroundColor: "rgba(0,255,0,0.8)",
             pointHitRadius: 50,
             pointBorderWidth: 2,
-            data: windData3,
-        }, {
-            label: "Vị trí cây 4",
-            lineTension: 0.3,
-            backgroundColor: "white",
-            borderColor: "rgba(241, 196, 15,1.0)",
-            pointRadius: 5,
-            pointBackgroundColor: "rgba(241, 196, 15,1.0)",
-            pointBorderColor: "rgba(255,255,255,0.8)",
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(241, 196, 15, 0.8)",
-            pointHitRadius: 50,
-            pointBorderWidth: 2,
-            data: windData4,
+            data: batteryData3,
         }],
     },
     options: {
@@ -328,12 +269,23 @@ var myBarChart1 = new Chart(ctx2, {
     type: 'bar',
     data: {
         labels: ["00:00 AM", "01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 AM", "06:00 AM"],
-        datasets: [{
-            label: "Humidity %",
-            backgroundColor: "rgba(2,117,216,1)",
-            borderColor: "rgba(2,117,216,1)",
-            data: hudmidityData1,
-        }],
+        datasets: [
+            {
+                label: "Vị trí cây 1",
+                backgroundColor: "rgba(0, 0, 255, 0.8)",
+                data: hudmidityData1
+            },
+            {
+                label: "Vị trí cây 2",
+                backgroundColor: "rgba(255, 0, 0, 0.8)",
+                data: hudmidityData2
+            },
+            {
+                label: "Vị trí cây 3",
+                backgroundColor: "rgba(0, 255, 0, 0.8)",
+                data: hudmidityData3
+            }
+        ],
     },
     options: {
         scales: {
