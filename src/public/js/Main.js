@@ -87,7 +87,7 @@ async function MapDataFetch() {
 
         // Check status for the map icon popup || Kiểm tra trạng thái để sửa đổi Icon
         wsp = parseFloat(wind)
-        if (stat != "Xanh" || wsp > 50) {
+        if (stat != "0" || wsp > 50) {
             stat = "Nguy hiểm"
             var marker = L.marker([lat, lon], {
                 icon: endangeredTree
