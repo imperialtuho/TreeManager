@@ -44,7 +44,7 @@ if ('geolocation' in navigator) {
         defY = position.coords.longitude
         var marker = L.marker([defX, defY])
         marker.addTo(map)
-        marker.bindPopup(`Vị trí hiện tại của gateway`, {}) // lat: ${defX.toFixed(3)} long: ${defY.toFixed(3)}
+        marker.bindPopup(`Vị trí IP truy cập hiện tại`, {}) // lat: ${defX.toFixed(3)} long: ${defY.toFixed(3)}
         marker.openPopup()
     })
 } else {
