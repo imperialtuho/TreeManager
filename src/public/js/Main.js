@@ -96,7 +96,7 @@ async function MapDataFetch() {
             map.addLayer(markers)
             alert(`Nguy hiểm tại cây số ${nodeName}`)
             map.setView([lat, lon], 18)
-        }if (wsp >= 25 && wsp <= 50) {
+        } else if (wsp >= 25 && wsp <= 50) {
             stat = "Có nguy cơ"
             var marker = L.marker([lat, lon], {
                 icon: warningTree
