@@ -59,6 +59,13 @@ function handleLongLat(a){
     z = (x + y).toFixed(5)
     return z
 }
+function handleDegree(a){
+    const d = 90
+    var x, z
+    x = Math.abs(parseFloat(a))
+    z = d - x
+    return z
+}
 
 //[GET] Data from API || Lấy dữ liệu từ API
 async function MapDataFetch() {
@@ -76,7 +83,7 @@ async function MapDataFetch() {
         x2 = item.ADXL345_2.X //X2
         y2 = item.ADXL345_2.Y //Y2
         z2 = item.ADXL345_2.Z //Z2
-        
+
         description = item.Mo_ta //Description       || Chú thích
         hud = item.Do_am    //Hudmidity              || Độ ẩm
         bat = item.Pin      //Battery                || Pin
@@ -118,11 +125,11 @@ async function MapDataFetch() {
             ID: ${nodeName}<br>
             Chú thích: ${description}<br>
             Tọa độ: Vĩ độ: ${lat}, Kinh độ: ${lon}<br>
-            Độ ẩm: ${hud}%<br>
-            Pin: ${bat}%<br>
-            Gió: ${wind}km/h<br>
-            ADXL345_Than: &nbsp; X: ${x1}&deg; &nbsp; Y: ${y1}&deg; &nbsp; Z: ${z1}&deg;<br>
-            ADXL345_Goc: &nbsp; X: ${x2}&deg; &nbsp; Y: ${y2}&deg; &nbsp; Z: ${z2}&deg;<br>
+            Độ ẩm: ${hud} %<br>
+            Pin: ${bat} %<br>
+            Gió: ${wind} km/h<br>
+            ADXL345 trên thân cây so với mặt đất: ${handleDegree(z1)}&deg;<br>
+            ADXL345 ở gốc cây so với mặt đất: ${handleDegree(z2)}&deg;<br>
             Trạng thái: ${stat} <br>
             Thời gian cập nhật: ${latest}
             
