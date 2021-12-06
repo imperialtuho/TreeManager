@@ -30,6 +30,7 @@ a {
 
 .leaflet-popup-content {
     font-weight: bold;
+    width: 350px!important;
 }
 
 

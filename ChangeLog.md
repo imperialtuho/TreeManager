@@ -1,4 +1,23 @@
-    V1.1.0 Nov th 2021 (The Lastest Update)
+    V1.2.0 Nov th 2021 (The Dec Update)
+New features:
+ - Added new Marker for no longer worked Node.
+ - New search function.
+ - Send mail when at critical status.
+ - ...
+
+Improvements:
+ - Search now optimized.
+ - Chart will now work perfectly even no data from node.
+ - Marker is now displayed better.
+ - Stability.
+
+Bug fixes:
+ - .
+
+Known bugs:
+ - .
+
+    V1.1.0 Nov th 2021
 
 Improvements:
  - Longitude and Latitude are now corrected displaying on map.

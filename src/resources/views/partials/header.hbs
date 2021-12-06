@@ -67,7 +67,7 @@
                                         <div class="card mb-4">
                                             <div class="card-header">
                                                 <i class="fas fa-chart-bar mr-1"></i>
-                                                Cảm biến nghiêng ADXL345 tại thân cây &deg;
+                                                Góc nghiêng hiện tại của thân cây so với mặt đất &deg;
                                             </div>
                                             <div class="card-body"><canvas id="myBarChart2" width="100%"
                                                     height="40"></canvas>
@@ -82,7 +82,7 @@
                                         <div class="card mb-4">
                                             <div class="card-header">
                                                 <i class="fas fa-chart-bar mr-1"></i>
-                                                Cảm biến nghiêng ADXL345 tại gốc cây &deg;
+                                                Góc nghiêng hiện tại ở gốc cây so với mặt đất &deg;
                                             </div>
                                             <div class="card-body"><canvas id="myBarChart3" width="100%"
                                                     height="40"></canvas>
@@ -98,8 +98,8 @@
 
                 <form class="d-flex" action="/" method="GET">
                     <input class="form-control me-2" type="text" autocomplete="" placeholder="&#128269; Tìm kiếm"
-                        name="q" aria-label="Search">
-                    <button class="btn btn-outline-success search-btn" type="submit" style="width: 150px;">Tìm
+                        name="q" aria-label="Search" id="search-box">
+                    <button class="btn btn-outline-success search-btn" type="button" onclick="SearchDataFetch()" style="width: 150px;">Tìm
                         kiếm</button>
                 </form>
 
@@ -128,7 +128,7 @@
                         giám sát, phòng chống cây xanh ngã đỗ.</br></br>
                         
                         Dữ liệu chuyên môn về phòng chống cây xanh ngã đỗ được cung cấp bởi nhóm thực hiện đề tài luận văn 
-                        tốt nghiệp năm 2020-2021 và được cập nhật ngay sau khi có dữ liệu được cập nhật trên database.</br></br>
+                        tốt nghiệp năm 2021-2022 và được cập nhật ngay sau khi có dữ liệu được cập nhật trên database.</br></br>
 
                         Nhóm thực hiện đề tài hy vọng bản đồ quản lý này là công cụ hỗ trợ phòng chống nguy cơ cây xanh ngã đỗ
                         hiệu quả cho người dân và các nhà quản lý cùng chung tay thành phố phòng chống việc cây xanh ngã đỗ gây 
@@ -137,23 +137,21 @@
                     <ul class="list-config">
                         <li>
                             <p><img src="/images/tree.png" alt="tree" width="28px" height="28px"> <span> <b>An toàn:</b>
-                                    Đây là những vị trí của cây có trạng thái an toàn, không có nguy cơ ngã đỗ.
+                                    Đây là những vị trí của cây có trạng thái an toàn, không có nguy cơ ngã đỗ và nút cảm biến hoạt động bình thường.
                                 </span>
                             </p>
                         </li>
                         <li>
-                            <p><img src="/images/alert.png" alt="alarm" width="28px" height="28px"> <span><b>Trung
-                                        bình:</b>
-                                    Đây là những vị trí của cây có trạng thái có nguy cơ ngã đổ, cần được kiểm
-                                    tra.</span>
+                            <p><img src="/images/alert.png" alt="alarm" width="28px" height="28px"> <span><b>Trung bình:</b>
+                                    Đây là những vị trí của cây có trạng thái có nguy cơ ngã đổ do có gió lớn trong thời gian dài, độ nghiêng tăng nhanh trong thời gian trung bình,
+                                     năng lượng pin còn lại dưới 50% hoặc nút cảm không hoạt động, cần được kiểm tra.</span>
                             </p>
                         </li>
                         <li>
                             <p> <img src="/images/alarm.png" alt="alert" width="28px" height="28px"> <span><b>Nguy
                                         hiểm:</b>
-                                    Đây là những vị trí của cây có trạng thái nguy hiểm có nguy cơ ngã đỗ rất cao cần
-                                    được
-                                    kiểm soát và xử lý kịp thời.</span>
+                                    Đây là những vị trí của cây có trạng thái nguy hiểm, có độ nghiêng thay đổi lớn trong thời gian dài nguy cơ ngã đỗ rất cao hoặc năng lượng pin còn lại dưới 30% cần
+                                    được kiểm soát và xử lý kịp thời.</span>
                             </p>
                         </li>
                         <li>
@@ -177,7 +175,7 @@
                                     &middot;
                                     <a href="https://github.com/Leopard2A7V" target="_blank">Terms &amp; Conditions</a>
                                     <a href="https://github.com/Leopard2A7V/TreeManager/blob/main/ChangeLog.md"
-                                        target="_blank">V1.0.3b</a>
+                                        target="_blank">V1.2.0</a>
                                 </div>
                             </div>
                         </div>

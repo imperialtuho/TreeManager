@@ -3,74 +3,249 @@ var x, y, z, hud, temp, wind,
 
     /* Battery Data */
 
-    batteryData1 = [76, 77, 88, 78, 80],
-    batteryData2 = [75, 78, 82, 81, 83],
-    batteryData3 = [70, 74, 82, 87, 88],
+    batteryData1 = [0, 0, 0, 0, 0],
+    batteryData2 = [0, 0, 0, 0, 0],
+    batteryData3 = [0, 0, 0, 0, 0],
 
     /* Hudmidity Data */
 
-    hudmidityData1 = [69, 70, 71, 68, 70],
-    hudmidityData2 = [70, 69, 72, 71, 72],
-    hudmidityData3 = [68, 71, 70, 70, 71],
+    hudmidityData1 = [0, 0, 0, 0, 0],
+    hudmidityData2 = [0, 0, 0, 0, 0],
+    hudmidityData3 = [0, 0, 0, 0, 0],
 
     /* ADXL345 Data */
 
-    adxl345_X_Data1  = [1, 3, 2, 1, 2],
-    adxl345_Y_Data1  = [3 ,1, 3, 2, 1],
+    adxl345_Z1_Data1 = [0, 0, 0, 0, 0],
+    adxl345_Z1_Data2 = [0, 0, 0, 0, 0],
+    adxl345_Z1_Data3 = [0, 0, 0, 0, 0],
 
-    adxl345_X_Data2  = [2, 3, 2, 3, 2.5],
-    adxl345_Y_Data2  = [3 ,2, 2.3, 2.7, 1.3],
+    adxl345_Z2_Data1 = [0, 0, 0, 0, 0],
+    adxl345_Z2_Data2 = [0, 0, 0, 0, 0],
+    adxl345_Z2_Data3 = [0, 0, 0, 0, 0],
 
     /*  Wind Volecity Data */
 
-    windData1 = [5, 7, 3, 8, 6],
-    windData2 = [4, 2, 5, 7, 5],
-    windData3 = [7, 6, 7, 7.5, 9]
+    windData1 = [0, 0, 0, 0, 0],
+    windData2 = [0, 0, 0, 0, 0],
+    windData3 = [0, 0, 0, 0, 0]
+
+function handleDegree(a) {
+    const d = 90
+    var x, z
+    x = Math.abs(parseFloat(a))
+    z = d - x
+    return z
+}
 
 async function MapDataPushFetch() {
     const response = await fetch("/api")
     const data = await response.json()
+    if (data.length >= 1) {
+        NodeData = data.sort((a, b) => (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0))
+        if (NodeData.length === 1) {
+            Z_body1 = NodeData[0].ADXL345_1.Z //Tree Body 1
+            Z_root1 = NodeData[0].ADXL345_2.Z //Tree Root 1
+            /* Pushing to Battery Data */
+            batteryData1.push(NodeData[0].Pin) /*Data 1*/
+            batteryData1.shift()
 
-    /* Pushing to Battery Data */
-    batteryData1.push(data[0].Pin) /*Data 1*/
-    batteryData1.shift()
+            batteryData2.push(0) /*Data 2*/
+            batteryData2.shift()
 
-    batteryData2.push(data[1].Pin) /*Data 2*/
-    batteryData2.shift()
+            batteryData3.push(0) /*Data 3*/
+            batteryData3.shift()
+            /* Pushing to Hudmidity Data */
+            hudmidityData1.push(NodeData[0].Do_am) /*Data 1*/
+            hudmidityData1.shift()
 
-    batteryData3.push(data[2].Pin) /*Data 3*/
-    batteryData3.shift()
+            hudmidityData2.push(0) /*Data 2*/
+            hudmidityData2.shift()
+
+            hudmidityData3.push(0) /*Data 3*/
+            hudmidityData3.shift()
+            /* Pushing to Wind Data */
+            windData1.push(NodeData[0].Gio) /*Data 1*/
+            windData1.shift()
+
+            windData2.push(0) /*Data 2*/
+            windData2.shift()
+
+            windData3.push(0) /*Data 3*/
+            windData3.shift()
+
+            /* Pushing to ADXL_1 Data 1  Body 1st*/
+            adxl345_Z1_Data1.push(handleDegree(Z_body1))
+            adxl345_Z1_Data1.shift()
+            /* Pushing to ADXL_1 Data 2  Body 2nd*/
+            adxl345_Z1_Data2.push(0)
+            adxl345_Z1_Data2.shift()
+            /* Pushing to ADXL_1 Data 3  Body 3rd*/
+            adxl345_Z1_Data3.push(0)
+            adxl345_Z1_Data3.shift()
+            /*   //////////////////////////////////////////////  */
+            /* Pushing to ADXL_2 Data 1  Root 1st*/
+            adxl345_Z2_Data1.push(handleDegree(Z_root1))
+            adxl345_Z2_Data1.shift()
+
+            /* Pushing to ADXL_2 Data 2  Root 2nd*/
+            adxl345_Z2_Data2.push(0)
+            adxl345_Z2_Data2.shift()
+            /* Pushing to ADXL_2 Data 3  Root 3rd*/
+            adxl345_Z2_Data3.push(0)
+            adxl345_Z2_Data3.shift()
 
 
-    /* Pushing to Hudmidity Data */
-    hudmidityData1.push(data[0].Do_am) /*Data 1*/
-    hudmidityData1.shift()
+        } else if (NodeData.length === 2) {
+            Z_body1 = NodeData[0].ADXL345_1.Z //Tree Body 1
+            Z_root1 = NodeData[0].ADXL345_2.Z //Tree Root 1
+            Z_body2 = NodeData[1].ADXL345_1.Z //Tree Body 2
+            Z_root2 = NodeData[1].ADXL345_2.Z //Tree Root 2
+            /* Pushing to Battery Data */
+            batteryData1.push(NodeData[0].Pin) /*Data 1*/
+            batteryData1.shift()
+            batteryData2.push(NodeData[1].Pin) /*Data 2*/
+            batteryData2.shift()
+            batteryData3.push(0) /*Data 3*/
+            batteryData3.shift()
+            /* Pushing to Hudmidity Data */
+            hudmidityData1.push(NodeData[0].Do_am) /*Data 1*/
+            hudmidityData1.shift()
+            hudmidityData2.push(NodeData[1].Do_am) /*Data 2*/
+            hudmidityData2.shift()
+            hudmidityData3.push(0) /*Data 3*/
+            hudmidityData3.shift()
+            /* Pushing to Wind Data */
+            windData1.push(NodeData[0].Gio) /*Data 1*/
+            windData1.shift()
+            windData2.push(NodeData[1].Gio) /*Data 2*/
+            windData2.shift()
+            windData3.push(0) /*Data 3*/
+            windData3.shift()
 
-    hudmidityData2.push(data[1].Do_am) /*Data 2*/
-    hudmidityData2.shift()
+            /* Pushing to ADXL_1 Data 1  Body 1st*/
+            adxl345_Z1_Data1.push(handleDegree(Z_body1))
+            adxl345_Z1_Data1.shift()
+            /* Pushing to ADXL_1 Data 2  Body 2nd*/
+            adxl345_Z1_Data2.push(handleDegree(Z_body2))
+            adxl345_Z1_Data2.shift()
+            /* Pushing to ADXL_1 Data 3  Body 3rd*/
+            adxl345_Z1_Data3.push(0)
+            adxl345_Z1_Data3.shift()
+            /*   //////////////////////////////////////////////  */
+            /* Pushing to ADXL_2 Data 1  Root 1st*/
+            adxl345_Z2_Data1.push(handleDegree(Z_root1))
+            adxl345_Z2_Data1.shift()
 
-    hudmidityData3.push(data[2].Do_am) /*Data 3*/
-    hudmidityData3.shift()
+            /* Pushing to ADXL_2 Data 2  Root 2nd*/
+            adxl345_Z2_Data2.push(handleDegree(Z_root2))
+            adxl345_Z2_Data2.shift()
+            /* Pushing to ADXL_2 Data 3  Root 3rd*/
+            adxl345_Z2_Data3.push(0)
+            adxl345_Z2_Data3.shift()
 
-    /* Pushing to Wind Data */
-    windData1.push(data[0].Gio) /*Data 1*/
-    windData1.shift()
+        } else {
+            Z_body1 = NodeData[0].ADXL345_1.Z //Tree Body 1
+            Z_root1 = NodeData[0].ADXL345_2.Z //Tree Root 1
+            Z_body2 = NodeData[1].ADXL345_1.Z //Tree Body 2
+            Z_root2 = NodeData[1].ADXL345_2.Z //Tree Root 2
+            Z_body3 = NodeData[2].ADXL345_1.Z //Tree Body 3
+            Z_root3 = NodeData[2].ADXL345_2.Z //Tree Root 3
+            /* Pushing to Battery Data */
+            batteryData1.push(NodeData[0].Pin) /*Data 1*/
+            batteryData1.shift()
+            batteryData2.push(NodeData[1].Pin) /*Data 2*/
+            batteryData2.shift()
+            batteryData3.push(NodeData[2].Pin) /*Data 3*/
+            batteryData3.shift()
+            /* Pushing to Hudmidity Data */
+            hudmidityData1.push(NodeData[0].Do_am) /*Data 1*/
+            hudmidityData1.shift()
+            hudmidityData2.push(NodeData[1].Do_am) /*Data 2*/
+            hudmidityData2.shift()
+            hudmidityData3.push(NodeData[2].Do_am) /*Data 3*/
+            hudmidityData3.shift()
+            /* Pushing to Wind Data */
+            windData1.push(NodeData[0].Gio) /*Data 1*/
+            windData1.shift()
+            windData2.push(NodeData[1].Gio) /*Data 2*/
+            windData2.shift()
+            windData3.push(NodeData[2].Gio) /*Data 3*/
+            windData3.shift()
+            /* Pushing to ADXL_1 Data 1  Body 1st*/
+            adxl345_Z1_Data1.push(handleDegree(Z_body1))
+            adxl345_Z1_Data1.shift()
+            /* Pushing to ADXL_1 Data 2  Body 2nd*/
+            adxl345_Z1_Data2.push(handleDegree(Z_body2))
+            adxl345_Z1_Data2.shift()
+            /* Pushing to ADXL_1 Data 3  Body 3rd*/
+            adxl345_Z1_Data3.push(handleDegree(Z_body3))
+            adxl345_Z1_Data3.shift()
+            /*   //////////////////////////////////////////////  */
+            /* Pushing to ADXL_2 Data 1  Root 1st*/
+            adxl345_Z2_Data1.push(handleDegree(Z_root1))
+            adxl345_Z2_Data1.shift()
 
-    windData2.push(data[1].Gio) /*Data 2*/
-    windData2.shift()
+            /* Pushing to ADXL_2 Data 2  Root 2nd*/
+            adxl345_Z2_Data2.push(handleDegree(Z_root2))
+            adxl345_Z2_Data2.shift()
+            /* Pushing to ADXL_2 Data 3  Root 3rd*/
+            adxl345_Z2_Data3.push(handleDegree(Z_root3))
+            adxl345_Z2_Data3.shift()
+        }
 
-    windData3.push(data[2].Gio) /*Data 3*/
-    windData3.shift()
-    /* Pushing to ADXL Data 1  Body*/ 
-    adxl345_X_Data1.push(data[0].ADXL345_1.X)
-    adxl345_X_Data1.shift()
-    adxl345_Y_Data1.push(data[0].ADXL345_1.Y)
-    adxl345_Y_Data1.shift()
-    /* Pushing to ADXL Data 2  Root*/
-    adxl345_X_Data2.push(data[0].ADXL345_2.X)
-    adxl345_X_Data2.shift()
-    adxl345_Y_Data2.push(data[0].ADXL345_2.Y)
-    adxl345_Y_Data2.shift()
+    } else {
+        /* Pushing to Battery Data */
+        batteryData1.push(0) /*Data 1*/
+        batteryData1.shift()
+
+        batteryData2.push(0) /*Data 2*/
+        batteryData2.shift()
+
+        batteryData3.push(0) /*Data 3*/
+        batteryData3.shift()
+
+        /* Pushing to Hudmidity Data */
+        hudmidityData1.push(0) /*Data 1*/
+        hudmidityData1.shift()
+
+        hudmidityData2.push(0) /*Data 2*/
+        hudmidityData2.shift()
+
+        hudmidityData3.push(0) /*Data 3*/
+        hudmidityData3.shift()
+
+        /* Pushing to Wind Data */
+        windData1.push(0) /*Data 1*/
+        windData1.shift()
+
+        windData2.push(0) /*Data 2*/
+        windData2.shift()
+
+        windData3.push(0) /*Data 3*/
+        windData3.shift()
+        /* Pushing to ADXL_1 Data 1  Body 1st*/
+        adxl345_Z1_Data1.push(0)
+        adxl345_Z1_Data1.shift()
+        /* Pushing to ADXL_1 Data 2  Body 2nd*/
+        adxl345_Z1_Data2.push(0)
+        adxl345_Z1_Data2.shift()
+        /* Pushing to ADXL_1 Data 3  Body 3rd*/
+        adxl345_Z1_Data3.push(0)
+        adxl345_Z1_Data3.shift()
+
+        /*   //////////////////////////////////////////////  */
+
+        /* Pushing to ADXL_2 Data 1  Root 1st*/
+        adxl345_Z2_Data1.push(0)
+        adxl345_Z2_Data1.shift()
+        /* Pushing to ADXL_2 Data 2  Root 2nd*/
+        adxl345_Z2_Data2.push(0)
+        adxl345_Z2_Data2.shift()
+        /* Pushing to ADXL_2 Data 3  Root 3rd*/
+        adxl345_Z2_Data3.push(0)
+        adxl345_Z2_Data3.shift()
+    }
+
 }
 
 /* Update Chart Data */
@@ -86,7 +261,6 @@ async function drawChart() {
 }
 
 /* Set Hour labels */
-
 var hours = [" ", " ", " ", " ", " ", " ", " "];
 async function setLabels() {
 
@@ -110,16 +284,12 @@ async function setLabels() {
 
 }
 
-
 /* Continously update the chart */
-
 setInterval(() => {
     drawChart()
 }, 10000)
 
-
 /* Chart selection */
-
 var ctx1 = document.getElementById("myAreaChart1")
 var ctx2 = document.getElementById("myBarChart1")
 var ctx3 = document.getElementById("myAreaChart2")
@@ -174,13 +344,13 @@ var myLineChart1 = new Chart(ctx1, {
     },
     options: {
         scales: {
-            x:{
+            x: {
                 title: {
                     display: true,
                     text: 'Thời Gian'
                 }
             },
-            y:{
+            y: {
                 ticks: {
                     min: 0,
                     max: 1000,
@@ -191,7 +361,7 @@ var myLineChart1 = new Chart(ctx1, {
                 },
                 title: {
                     display: true,
-                    text:'Giá trị'
+                    text: 'Giá trị'
                 }
             },
         },
@@ -249,13 +419,13 @@ var myLineChart2 = new Chart(ctx3, {
     },
     options: {
         scales: {
-            x:{
+            x: {
                 title: {
                     display: true,
                     text: 'Thời Gian'
                 }
             },
-            y:{
+            y: {
                 ticks: {
                     min: 0,
                     max: 1000,
@@ -266,7 +436,7 @@ var myLineChart2 = new Chart(ctx3, {
                 },
                 title: {
                     display: true,
-                    text:'Giá trị'
+                    text: 'Giá trị'
                 }
             },
         },
@@ -276,14 +446,12 @@ var myLineChart2 = new Chart(ctx3, {
     }
 });
 
-
 /* Hudmidity Data Chart */
 var myBarChart1 = new Chart(ctx2, {
     type: 'bar',
     data: {
         labels: [" ", " ", " ", " ", " ", " ", " "],
-        datasets: [
-            {
+        datasets: [{
                 label: "Vị trí cây 1",
                 backgroundColor: "rgba(0, 0, 255, 0.8)",
                 data: hudmidityData1
@@ -302,13 +470,13 @@ var myBarChart1 = new Chart(ctx2, {
     },
     options: {
         scales: {
-            x:{
+            x: {
                 title: {
                     display: true,
                     text: 'Thời Gian'
                 }
             },
-            y:{
+            y: {
                 ticks: {
                     min: 0,
                     max: 1000,
@@ -319,7 +487,7 @@ var myBarChart1 = new Chart(ctx2, {
                 },
                 title: {
                     display: true,
-                    text:'Giá trị'
+                    text: 'Giá trị'
                 }
             },
         },
@@ -329,14 +497,13 @@ var myBarChart1 = new Chart(ctx2, {
     }
 });
 
-
-/* ADXL345_1 Data Chart */
+/* ADXL345_1 Body Data Chart */
 var myBarChart2 = new Chart(ctx4, {
     type: 'line',
     data: {
         labels: [" ", " ", " ", " ", " ", " ", " "],
         datasets: [{
-            label: "X",
+            label: "Vị trí cây 1",
             lineTension: 0.3,
             backgroundColor: "white",
             borderColor: "blue",
@@ -347,9 +514,9 @@ var myBarChart2 = new Chart(ctx4, {
             pointHoverBackgroundColor: "rgba(2,117,216, 1)",
             pointHitRadius: 50,
             pointBorderWidth: 2,
-            data: adxl345_X_Data1,
+            data: adxl345_Z1_Data1,
         }, {
-            label: "Y",
+            label: "Vị trí cây 2",
             lineTension: 0.3,
             backgroundColor: "white",
             borderColor: "red",
@@ -360,18 +527,31 @@ var myBarChart2 = new Chart(ctx4, {
             pointHoverBackgroundColor: "rgba(255, 0, 0, 1)",
             pointHitRadius: 50,
             pointBorderWidth: 2,
-            data: adxl345_Y_Data1,
+            data: adxl345_Z1_Data2,
+        }, {
+            label: "Vị trí cây 3",
+            lineTension: 0.3,
+            backgroundColor: "white",
+            borderColor: "green",
+            pointRadius: 5,
+            pointBackgroundColor: "green",
+            pointBorderColor: "rgba(255,255,255,0.8)",
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(0,255,0, 1)",
+            pointHitRadius: 50,
+            pointBorderWidth: 2,
+            data: adxl345_Z1_Data3,
         }],
     },
     options: {
         scales: {
-            x:{
+            x: {
                 title: {
                     display: true,
                     text: 'Thời Gian'
                 }
             },
-            y:{
+            y: {
                 ticks: {
                     min: 0,
                     max: 1000,
@@ -382,7 +562,7 @@ var myBarChart2 = new Chart(ctx4, {
                 },
                 title: {
                     display: true,
-                    text:'Giá trị'
+                    text: 'Giá trị'
                 }
             },
         },
@@ -398,7 +578,7 @@ var myBarChart3 = new Chart(ctx5, {
     data: {
         labels: [" ", " ", " ", " ", " ", " ", " "],
         datasets: [{
-            label: "X",
+            label: "Vị trí cây 1",
             lineTension: 0.3,
             backgroundColor: "white",
             borderColor: "blue",
@@ -409,9 +589,22 @@ var myBarChart3 = new Chart(ctx5, {
             pointHoverBackgroundColor: "rgba(2,117,216, 1)",
             pointHitRadius: 50,
             pointBorderWidth: 2,
-            data: adxl345_X_Data2,
+            data: adxl345_Z2_Data1,
         }, {
-            label: "Y",
+            label: "Vị trí cây 2",
+            lineTension: 0.3,
+            backgroundColor: "white",
+            borderColor: "red",
+            pointRadius: 5,
+            pointBackgroundColor: "red",
+            pointBorderColor: "rgba(255,255,255,0.8)",
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(255, 0, 0, 1)",
+            pointHitRadius: 50,
+            pointBorderWidth: 2,
+            data: adxl345_Z2_Data2,
+        }, {
+            label: "Vị trí cây 3",
             lineTension: 0.3,
             backgroundColor: "white",
             borderColor: "green",
@@ -422,18 +615,18 @@ var myBarChart3 = new Chart(ctx5, {
             pointHoverBackgroundColor: "rgba(0, 255, 0, 1)",
             pointHitRadius: 50,
             pointBorderWidth: 2,
-            data: adxl345_Y_Data2,
+            data: adxl345_Z2_Data3,
         }],
     },
     options: {
         scales: {
-            x:{
+            x: {
                 title: {
                     display: true,
                     text: 'Thời Gian'
                 }
             },
-            y:{
+            y: {
                 ticks: {
                     min: 0,
                     max: 1000,
@@ -444,7 +637,7 @@ var myBarChart3 = new Chart(ctx5, {
                 },
                 title: {
                     display: true,
-                    text:'Giá trị'
+                    text: 'Giá trị'
                 }
             },
         },
