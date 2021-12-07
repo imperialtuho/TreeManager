@@ -161,10 +161,15 @@ input::placeholder {
     }
 
     /* button */
+    .btn{
+        color: black;
+    }
     .search-btn {
         margin-top: 4% !important;
     }
-
+    .navbar{
+        background-color: white!important;
+    }
 }
 
 /* For less than 768px // Tablet //Small Desktop */

@@ -81,7 +81,6 @@ async function MapDataFetch() {
         },
         body: JSON.stringify(data)
     }
-    fetch('/apidata', Options)
     if (data.length < 1) {
 
         for (item of GeoData) {
@@ -141,6 +140,7 @@ async function MapDataFetch() {
                     })
                     markers.addLayer(marker)
                     map.addLayer(markers)
+                    fetch('/apidata', Options) //POST DATA BACK TO SERVER
                     alert(`Nguy hiểm tại cây số ${nodeName}`)
                     map.setView([lat, lon], 18)
                 } else if ((wsp >= 25 && wsp <= 50) || (pwd > 30 && pwd < 50)) {
@@ -212,4 +212,4 @@ setInterval(() => {
     MapDataFetch()
     console.log("Map updated!")
     markers.clearLayers()
-}, 10000)
+}, 20000)

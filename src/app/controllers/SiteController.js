@@ -38,7 +38,8 @@ class SiteController {
     }
     //[POST] CLIENT-SERVER DATA PROCESSING AND RESPONDING
     async apidata(req, res, next) {
-        var item, iD, stat, bat, wind
+        var item, iD, stat, bat, wind, textInfo
+
         function SendMail() {
             var transporter = nodemailer.createTransport({
                 service: 'gmail',
@@ -50,9 +51,9 @@ class SiteController {
 
             var mailOptions = {
                 from: 'Treemanagertempmail@gmail.com',
-                to: 'waffenss436@gmail.com, duyngo.4135@gmail.com, tub1709448@student.ctu.edu.vn',
+                to: 'waffenss436@gmail.com',
                 subject: 'Cảnh báo cây xanh ngã đổ',
-                text: `Có góc nghiêng thay đổi đáng kể trong 3 lần đọc giá trị liên tiếp tại cây số ${iD}!`
+                text: `${textInfo}${iD} !`
             };
 
             transporter.sendMail(mailOptions, function (error, info) {
@@ -72,8 +73,17 @@ class SiteController {
             wind = item.wind
             var wsp = parseFloat(wind)
             var pwd = parseInt(bat)
-            if ((stat != "0") || (wsp > 50) || (pwd <= 30)) {
+            if ((stat != "0")) {
+                textInfo = 'Có góc nghiêng thay đổi đáng kể trong 3 lần đọc giá trị liên tiếp tại cây số: '
                 SendMail()
+                stat ='0'
+            } else if (wsp > 50) {
+                textInfo = `Có gió lớn ${wsp} trong thời gian dài ở khu vực tại cây số: `
+                SendMail()
+                wsp = 0
+            } else if (pwd <= 30) {
+                textInfo = `Năng lượng pin của nút cảm biến còn dưới ${pwd}% tại cây số: `
+                pwd = 100
             } else {
                 continue
             }
