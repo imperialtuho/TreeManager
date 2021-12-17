@@ -212,4 +212,4 @@ setInterval(() => {
     MapDataFetch()
     console.log("Map updated!")
     markers.clearLayers()
-}, 30000)
+}, 10000)
