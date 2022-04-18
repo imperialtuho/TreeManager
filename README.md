@@ -1,5 +1,6 @@
 # TreeManager
 Tree manager website project is developed, built and modified by myself (Imperial Tu Ho).
+Tech: Bootstrap, jQuery, NodeJS, MongoDB.
 
 This project is made for my graduation essay (2020-2021) about managing risk of falling tree in region 2 of CTU (Can Tho University).
 
